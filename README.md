@@ -20,3 +20,4 @@
 - [ ] styled-components
 - [ ] react-router-dom
 - [ ] axios
+- [ ] mock API
