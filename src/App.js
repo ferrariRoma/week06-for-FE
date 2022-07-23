@@ -1,11 +1,13 @@
 import "./App.css";
+import React, { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
-import Home from "./pages/Home";
 import { StyledHeader } from "./components/styled";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useEffect, useState } from "react";
 import axios from "axios";
+import LoadingSpinner from "./components/Spinner";
+import Home from "./pages/Home";
+import Detail from "./pages/Detail";
 
 function App() {
   // 페이지네이션 관련 state. 페이지네이션이 이루어지는 Home component에 props로 전달.
@@ -23,6 +25,7 @@ function App() {
   }, []);
   return (
     <div className="App">
+      {loading && <LoadingSpinner />}
       <StyledHeader>
         <div>
           <div>로고</div>
@@ -35,6 +38,7 @@ function App() {
       </StyledHeader>
       <Routes>
         <Route path="/" element={<Home posts={posts} loading={loading} />} />
+        <Route path="/api/posts/:postId" element={<Detail />} />
       </Routes>
     </div>
   );

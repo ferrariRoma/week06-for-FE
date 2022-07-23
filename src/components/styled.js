@@ -11,6 +11,9 @@ export const StyledHeader = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 0 5rem;
+  @media screen and (max-width: 600px) {
+    padding: 0 1rem;
+  }
   div {
     display: flex;
     justify-content: space-around;
@@ -29,9 +32,24 @@ export const StyledMainGrid = styled.div`
   padding: 0 4rem;
 
   display: grid;
-  /* grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr)); */
-  grid-template-columns: repeat(4, minmax(5rem, 15rem));
+  grid-template-columns: repeat(4, minmax(13rem, 15rem));
   grid-auto-rows: 13rem;
+  @media screen and (max-width: 1000px) {
+    grid-template-columns: repeat(4, minmax(13rem, 15rem));
+    grid-auto-rows: 13rem;
+  }
+  @media screen and (max-width: 900px) {
+    grid-template-columns: repeat(3, minmax(13rem, 15rem));
+    grid-auto-rows: 11rem;
+  }
+  @media screen and (max-width: 800px) {
+    grid-template-columns: repeat(2, minmax(13rem, 15rem));
+    grid-auto-rows: 11rem;
+  }
+  @media screen and (max-width: 600px) {
+    grid-template-columns: repeat(1, minmax(13rem, 15rem));
+    grid-auto-rows: 11rem;
+  }
   gap: 1.2rem;
   justify-content: center;
 `;
