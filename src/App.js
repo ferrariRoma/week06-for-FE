@@ -1,11 +1,18 @@
 import "./App.css";
 import { Routes, Route } from "react-router-dom";
-import Home from "./pages/Homs";
-import { StyledHeader, StyledSidebar } from "./components/styled";
+import Home from "./pages/Homes";
+import { StyledHeader} from "./components/styled";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import LoginPage from "./pages/LoginPage";
+import RegisterPage from "./pages/RegiserPage";
+import React from "react";
 
 function App() {
+  // React.useEffect (()=>{
+  //   sessionStorage.getItem("cookie")
+  // })
+
   return (
     <div className="App">
       <StyledHeader>
@@ -20,8 +27,8 @@ function App() {
       </StyledHeader>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/" element={<Home />} />
-        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<LoginPage/>} />
+        <Route path="/regist" element={<RegisterPage />} />
         <Route path="/" element={<Home />} />
         <Route path="/" element={<Home />} />
       </Routes>
