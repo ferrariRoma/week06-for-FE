@@ -2,7 +2,7 @@ import React, { memo } from "react";
 import { StyledMainGrid } from "./styled";
 import MainItemContainer from "./MainItemContainer";
 
-const PagenationPost = memo(({ loading, posts }) => {
+const PagenationPost = memo(({ posts }) => {
   return (
     <>
       <StyledMainGrid>

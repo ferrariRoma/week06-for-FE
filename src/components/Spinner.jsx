@@ -1,8 +1,8 @@
-import React from "react";
+import React, { memo } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 
-const LoadingSpinner = () => {
+const LoadingSpinner = memo(() => {
   return (
     <>
       <div className="fa-3x spinnerDiv">
@@ -10,6 +10,6 @@ const LoadingSpinner = () => {
       </div>
     </>
   );
-};
+});
 
 export default LoadingSpinner;
