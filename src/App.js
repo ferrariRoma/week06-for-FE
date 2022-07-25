@@ -11,8 +11,6 @@ import Detail from "./pages/Detail";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegiserPage";
 
-
-
 function App() {
   // 페이지네이션 관련 state. 페이지네이션이 이루어지는 Home component에 props로 전달.
   const [posts, setPosts] = useState([]);
