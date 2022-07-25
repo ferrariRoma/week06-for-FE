@@ -17,12 +17,14 @@ const LoginPage = () => {
        }
 
         axios.get("http://localhost:5001/login/true",data).then(response=>{
-            console.log(response)
-            sessionStorage.setItem("key", response.data.cookie)
+            const test = JSON.stringify(response.data.cookie.email)
+            const test1 = JSON.parse(test)
+            console.log(test, test1)
+            sessionStorage.setItem("user", JSON.stringify(response.data.cookie))
             dispatch(loginUser(
              {
-                email: response.data.email,
-                nickname: response.data.nickname,
+                email: response.data.cookie.email,
+                nickname: response.data.cookie.nickname,
              }
             ))
             navigater("/");
@@ -30,6 +32,8 @@ const LoginPage = () => {
             alert(error);
            })  
     }
+
+    
 
     const onEmailHandler = (event) => {
       setEmail(event.currentTarget.value);
@@ -74,7 +78,7 @@ const LoginPage = () => {
             <button type="submit" onClick={loginAxios}>로그인하기</button>
         </form>
             <br/>
-            <button style={{padding:"0 3.2rem "}}> 회원가입</button>
+            <button style={{padding:"0 3.2rem "}} onClick={()=>navigater("/signup")}> 회원가입</button>
     </div>
     </div>
    )
