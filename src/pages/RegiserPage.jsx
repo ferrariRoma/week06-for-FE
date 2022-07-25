@@ -41,7 +41,7 @@ const RegisterPage = () => {
         if (password ===confirmPassword) {
             console.log(email, password, nickName)
             alert("가입완료")
-            navigater("/regist");
+            navigater("/login");
           } else {
             alert("비밀번호가 일치하지 않습니다.")
         }
