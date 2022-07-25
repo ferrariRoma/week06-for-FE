@@ -13,7 +13,6 @@ const Post = () => {
   const content = useRef();
   const [gadaOda, setGadaOda] = useState("");
   const [district, setDistrict] = useState("");
-  const test = useRef(null);
   let inputRef;
   const [fileImage, setFileImage] = useState({
     image_file: "",
@@ -61,6 +60,7 @@ const Post = () => {
         preview_URL: "https://memegenerator.net/img/instances/80735467.jpg",
       });
       navigate("/");
+      window.location.reload()
     } else {
       alert("사진을 등록하세요!");
     }
@@ -102,7 +102,7 @@ const Post = () => {
     useEffect(() => {}, [district]);
 
     return (
-      <select onChange={handleChange} ref={test} value={district}>
+      <select onChange={handleChange} value={district}>
         {props.options.map((option) => (
           <option
             key={option.value}

@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, useLocation } from "react-router-dom";
 import {
   StyledPostContainer,
   StyledPostInnerContainer,
@@ -7,42 +7,49 @@ import {
 } from "../components/styled";
 import axios from "axios";
 
-const EditPost = () => {
-  const { detail_id } = useParams();
+const EditPost = (prop) => {
+  const { edit_id } = useParams();
   const navigate = useNavigate();
+  // const location = useLocation();
   const title = useRef();
   const content = useRef();
   const [gadaOda, setGadaOda] = useState("");
   const [district, setDistrict] = useState("");
-  const test = useRef(null);
   let inputRef;
   const [fileImage, setFileImage] = useState({
     image_file: "",
     preview_url: "https://memegenerator.net/img/instances/80735467.jpg",
   });
 
-  useEffect(()=> {
+  // const {result} = location.state
+  // setFileImage(result.fileImage.preview_url)
+  // setGadaOda(result.gadaoda)
+  // setDistrict(result.district)
+  // const title = useRef(result.title);
+  // const content = useRef(result.content);
+
+  useEffect(() => {
     const getPost = async () => {
-        const {data} = await axios.get(`/api/detail/${detail_id}`)
-        return data;
-    }
+      const { data } = await axios.get(
+        `http://localhost:5001/posts/${edit_id}`
+      );
+      return data;
+    };
     const getImage = async () => {
-        const {data} = await axios.get(`/api/image`)
-        return data;
-    }
+      const { data } = await axios.get(``);
+      return data;
+    };
     getPost().then((result) => {
-        setGadaOda(result.gadaOda)
-        setDistrict(result.setDistrict) 
-        title = result.title
-        content = result.content
-    })
+      setGadaOda(result.gadaOda);
+      setDistrict(result.setDistrict);
+      title.current.value = result.title;
+      content.current.value = result.content;
+    });
 
     getImage().then((result) => {
-        setFileImage({...fileImage, preview_url:`/api/image`})
-
-    })
-
-  }, [])
+      setFileImage({ ...fileImage, preview_url: `` });
+    });
+  }, []);
 
   //파일 저장
   const saveFileImage = (e) => {
@@ -89,6 +96,7 @@ const EditPost = () => {
     }
   };
   //서버로 제목, 글내용, 습득or분실, 구 정보 보내기
+  //formdata로 보내야 되나요?
   const sendContentToServer = async () => {
     const contentBox = {
       title: title.current.value,
@@ -97,8 +105,16 @@ const EditPost = () => {
       gadaoda: gadaOda,
       completed: false,
     };
-    console.log(contentBox);
-    await axios.put("/api/", contentBox);
+    // 폼데이터로 보낼경우
+    // const formData = new FormData();
+    // formData.append("title", title.current.value);
+    // formData.append("content", content.current.value);
+    // formData.append("district", distrct);
+    // formData.append("gadaoda", gadaOda);
+    // formData.append("completed", false);
+    // await api.put("", formData);
+
+    await axios.put("http://localhost:5001/posts/${edit_id}", contentBox);
   };
 
   const OPTIONS = [
@@ -125,7 +141,7 @@ const EditPost = () => {
     useEffect(() => {}, [district]);
 
     return (
-      <select onChange={handleChange} ref={test} value={district}>
+      <select onChange={handleChange} value={district}>
         {props.options.map((option) => (
           <option
             key={option.value}
@@ -146,7 +162,7 @@ const EditPost = () => {
     };
 
     useEffect(() => {}, [gadaOda]);
-    //희정님이 짠 코드입니다.
+
     return (
       <select onChange={handleChange} value={gadaOda}>
         {props.options.map((option) => (
@@ -167,7 +183,7 @@ const EditPost = () => {
       <StyledPostContainer>
         <hl>게시글 수정하기</hl>
         <br />
-        
+
         <SelectBox options={OPTIONS} />
         <GadaodaBox options={GADAODA} />
         <StyledPostInnerContainer>
