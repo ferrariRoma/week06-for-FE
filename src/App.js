@@ -45,7 +45,7 @@ function App() {
         <Route path="/api/posts/:postId" element={<Detail />} />
         <Route path="/login" element={<LoginPage/>} />
         <Route path="/regist" element={<RegisterPage />} />
-        <Route path="/api/posts" element={<Posts/>}/>
+        <Route path="/posts" element={<Post/>}/>
       </Routes>
     </div>
   );

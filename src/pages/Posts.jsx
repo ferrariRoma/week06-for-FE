@@ -54,7 +54,7 @@ const Post = () => {
     if (fileImage.image_file) {
       const formData = new FormData();
       formData.append("file", fileImage.image_file);
-      await axios.post("/api/", formData);
+      await axios.post("http://localhost:5001/posts", formData);
       alert("서버에 등록이 완료되었습니다!");
       setFileImage({
         image_file: "",
@@ -75,7 +75,7 @@ const Post = () => {
       completed: false,
     };
     console.log(contentBox);
-    await axios.post("/api/", contentBox);
+    await axios.post("http://localhost:5001/posts", contentBox);
   };
 
   const OPTIONS = [
@@ -188,7 +188,7 @@ const Post = () => {
                 sendContentToServer();
               }}
             >
-              수정하기
+              작성하기
             </button>
             <button onClick={() => navigate("/")}>취소</button>
           </StylePostBtn>
