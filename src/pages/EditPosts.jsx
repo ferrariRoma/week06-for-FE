@@ -105,17 +105,20 @@ const EditPost = (prop) => {
       gadaoda: gadaOda,
       completed: false,
     };
-    // 폼데이터로 보낼경우
-    // const formData = new FormData();
-    // formData.append("title", title.current.value);
-    // formData.append("content", content.current.value);
-    // formData.append("district", distrct);
-    // formData.append("gadaoda", gadaOda);
-    // formData.append("completed", false);
-    // await api.put("", formData);
 
     await axios.put("http://localhost:5001/posts/${edit_id}", contentBox);
   };
+
+  // 폼데이터로 보낼경우
+  // const sendContentToServer = async () => {
+  // const formData = new FormData();
+  // formData.append("title", title.current.value);
+  // formData.append("content", content.current.value);
+  // formData.append("district", distrct);
+  // formData.append("gadaoda", gadaOda);
+  // formData.append("completed", false);
+  // await api.put("http://localhost:5001/posts/${edit_id}", formData);
+  //}
 
   const OPTIONS = [
     { value: "susung", name: "수성구" },
