@@ -99,3 +99,25 @@ export const StyledPageLi = styled.li`
     background-color: rgba(38, 58, 108, 0.6);
   }
 `;
+export const StyledPostContainer = styled.div`
+  margin-top: 5rem;
+  position: fixed;
+  top: 5rem;
+  left: 50%;
+  transform: translate(-50%, 0);
+  border: 1px solid black;
+  width: 40rem;
+  height: 60rem;
+`;
+
+export const StyledPostInnerContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+export const StylePostBtn = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1rem;
+`;
