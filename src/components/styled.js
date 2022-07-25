@@ -11,6 +11,9 @@ export const StyledHeader = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 0 5rem;
+  background-color: #15203f;
+  color: white;
+
   @media screen and (max-width: 600px) {
     padding: 0 1rem;
   }
@@ -100,19 +103,72 @@ export const StyledPageLi = styled.li`
   }
 `;
 export const StyledPostContainer = styled.div`
-  margin-top: 5rem;
-  position: fixed;
-  top: 5rem;
-  left: 50%;
-  transform: translate(-50%, 0);
-  border: 1px solid black;
+  margin: auto;
+  margin-top: 8rem;
+  border: 0.1rem solid rgba(0, 0, 0, 0.2);
+  border-radius: 1rem;
   width: 40rem;
-  height: 60rem;
+  box-shadow: rgba(0, 0, 0, 0.3) 0.4rem 0.4rem 4rem 0rem;
+  .content__district {
+    width: 20rem;
+    margin: auto;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    div:first-child {
+      letter-spacing: 0.3rem;
+      font-weight: bold;
+      font-size: 1.5rem;
+      text-align: center;
+      border-bottom: 0.2rem solid rgba(0, 0, 0, 1);
+    }
+  }
 `;
 
 export const StyledPostInnerContainer = styled.div`
   display: flex;
   flex-direction: column;
+  padding: 0.7rem;
+  border-radius: 1rem;
+
+  .img__container {
+    width: 20rem;
+    margin: auto;
+    margin-bottom: 2rem;
+
+    img {
+      width: 100%;
+      border-radius: 1rem;
+      object-fit: contain;
+      transition: all 0.2s ease-in-out;
+      &:hover {
+        transform: scale(1.03);
+        box-shadow: rgba(0, 0, 0, 0.2) 0.4rem 0.4rem 4rem 0.8rem;
+      }
+    }
+  }
+  .content__title {
+    width: 20rem;
+
+    margin: auto;
+    margin-bottom: 2rem;
+
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-align: start;
+  }
+  .content__content {
+    width: 20rem;
+
+    margin: auto;
+    margin-bottom: 2rem;
+
+    font-size: 1.2rem;
+    text-align: start;
+    line-height: 1.4rem;
+  }
 `;
 
 export const StylePostBtn = styled.div`
