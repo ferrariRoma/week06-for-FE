@@ -9,6 +9,8 @@ export const StyledHeader = styled.div`
   width: 100vw;
   height: 5rem;
   display: flex;
+  background-color: #15203f;
+  color: white;
   justify-content: space-between;
   padding: 0 5rem;
   @media screen and (max-width: 600px) {
@@ -99,25 +101,94 @@ export const StyledPageLi = styled.li`
     background-color: rgba(38, 58, 108, 0.6);
   }
 `;
-export const StyledPostContainer = styled.div`
-  margin-top: 5rem;
-  position: fixed;
-  top: 5rem;
-  left: 50%;
-  transform: translate(-50%, 0);
-  border: 1px solid black;
-  width: 40rem;
-  height: 60rem;
-`;
+// export const StyledPostContainer = styled.div`
+//   margin-top: 8rem;
+//   margin-bottom: 2rem;
+//   position: relative;
+//   top: 1rem;
+//   left: 50%;
+//   transform: translate(-50%, 0);
+//   border: transparent;
+//   border-radius: 1rem;
+//   box-shadow: 5px 5px 5px 5px lightgray;
 
-export const StyledPostInnerContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
+//   @media (max-width: 575px) {
+//     overflow: auto;
+//     width: 300px;
+//   }
 
-export const StylePostBtn = styled.div`
+//   @media (min-width: 576px) and (max-width: 767px) {
+//     overflow: auto;
+//     width: 500px;
+//   }
+
+//   @media (min-width: 768px) and (max-width: 991px) {
+//     width: 700px;
+//     overflow: auto;
+//   }
+
+//   @media (min-width: 992px) and (max-width: 1199px) {
+//     width: 900px;
+//     overflow: auto;
+//   }
+
+//   @media (min-width: 1200px) {
+//     width: 1100px;
+//     overflow: auto;
+//   }
+// `;
+
+// export const StyledPostInnerContainer = styled.div`
+//   display: flex;
+//   flex-direction: column;
+// `;
+
+export const StyledPostBtn = styled.div`
   display: flex;
-  align-items: center;
   justify-content: center;
   margin-top: 1rem;
+  gap: 1rem;
+`;
+
+export const StyledSelect = styled.select`
+  width: 5rem;
+  padding: 0.8em 0.5em;
+  border: 1px solid #15203f;
+  background: url("https://t1.daumcdn.net/cfile/tistory/99761B495C84AA8716")
+    no-repeat 95% 50%;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  margin: 0.5rem;
+`;
+
+export const StylePostTitle = styled.div`
+  margin-top: 1rem;
+  font-size: 2rem;
+  font-weight: bold;
+`;
+
+export const StyledPostSubtitle = styled.div`
+  font-size: 1.5rem;
+  margin: 1rem;
+  font-weight: bold;
+  text-align: left;
+`;
+
+export const StyledInputTitle = styled.input`
+  height: 2.5rem;
+  border: transparent;
+  box-shadow: 1px 1px 1px 1px lightgray;
+  outline: none;
+  box-sizing: border-box;
+  padding: 1rem;
+`;
+
+export const StyledInputContent = styled.textarea`
+  height: 15rem;
+  border: transparent;
+  box-shadow: 1px 1px 1px 1px lightgray;
+  outline: none;
+  box-sizing: border-box;
+  padding: 1rem;
 `;
