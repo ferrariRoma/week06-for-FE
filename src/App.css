@@ -86,7 +86,7 @@
   overflow: hidden;
 }
 
-.complete__btn {
+.complete__btn__custom {
   margin: 1rem 0;
   width: 7rem;
   height: 3rem;
@@ -121,4 +121,19 @@
 
 .btn:active {
   border: 3px solid gold;
+}
+
+.left__btn::before {
+  top: 0;
+  left: -100%;
+}
+
+.left__btn:hover::before {
+  transform: translateX(100%);
+}
+
+.completed {
+  transform: none;
+  color: #3c3e70;
+  background-color: gold;
 }

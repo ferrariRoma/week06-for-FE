@@ -20,7 +20,6 @@ const Post = () => {
     preview_url: "https://memegenerator.net/img/instances/80735467.jpg",
   });
 
-
   //파일 저장
   const saveFileImage = (e) => {
     e.preventDefault();
@@ -144,7 +143,7 @@ const Post = () => {
       <StyledPostContainer>
         <hl>게시글 작성하기</hl>
         <br />
-        
+
         <SelectBox options={OPTIONS} />
         <GadaodaBox options={GADAODA} />
         <StyledPostInnerContainer>

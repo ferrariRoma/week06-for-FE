@@ -12,7 +12,6 @@ import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegiserPage";
 import Post from "./pages/Posts";
 
-
 function App() {
   // 페이지네이션 관련 state. 페이지네이션이 이루어지는 Home component에 props로 전달.
   const [posts, setPosts] = useState([]);
@@ -42,10 +41,13 @@ function App() {
       </StyledHeader>
       <Routes>
         <Route path="/" element={<Home posts={posts} loading={loading} />} />
-        <Route path="/api/posts/:postId" element={<Detail />} />
-        <Route path="/login" element={<LoginPage/>} />
+        <Route
+          path="/api/posts/:postId"
+          element={<Detail loading={loading} setLoading={setLoading} />}
+        />
+        <Route path="/login" element={<LoginPage />} />
         <Route path="/regist" element={<RegisterPage />} />
-        <Route path="/posts" element={<Post/>}/>
+        <Route path="/posts" element={<Post />} />
       </Routes>
     </div>
   );
