@@ -1,49 +1,60 @@
 import React, { useState, useRef, useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, useLocation } from "react-router-dom";
 import {
   StyledPostContainer,
   StyledPostInnerContainer,
-  StylePostBtn,
+  StyledPostBtn,
+  StyledSelect,
+  StylePostTitle,
+  StyledPostSubtitle,
+  StyledInputContent,
+  StyledInputTitle,
 } from "../components/styled";
 import axios from "axios";
+import "./post.css";
 
-const EditPost = () => {
-  const { detail_id } = useParams();
+const EditPost = (prop) => {
+  const { edit } = useParams();
   const navigate = useNavigate();
+  // const location = useLocation();
   const title = useRef();
   const content = useRef();
   const [gadaOda, setGadaOda] = useState("");
   const [district, setDistrict] = useState("");
-  const test = useRef(null);
+  const [completed, setCompleted] = useState("");
   let inputRef;
   const [fileImage, setFileImage] = useState({
     image_file: "",
     preview_url: "https://memegenerator.net/img/instances/80735467.jpg",
   });
 
-  useEffect(()=> {
+  // const {result} = location.state
+  // setFileImage(result.fileImage.preview_url)
+  // setGadaOda(result.gadaoda)
+  // setDistrict(result.district)
+  // const title = useRef(result.title);
+  // const content = useRef(result.content);
+  // setCompleted(result.completed)
+
+  useEffect(() => {
     const getPost = async () => {
-        const {data} = await axios.get(`/api/detail/${detail_id}`)
-        return data;
-    }
+      const { data } = await axios.get(`http://localhost:5001/posts/${edit}`);
+      return data;
+    };
     const getImage = async () => {
-        const {data} = await axios.get(`/api/image`)
-        return data;
-    }
+      const { data } = await axios.get(``);
+      return data;
+    };
     getPost().then((result) => {
-        setGadaOda(result.gadaOda)
-        setDistrict(result.setDistrict) 
-        title = result.title
-        content = result.content
-    })
-
+      setGadaOda(result.gadaOda);
+      setDistrict(result.setDistrict);
+      title.current.value = result.title;
+      content.current.value = result.content;
+    });
     getImage().then((result) => {
-        setFileImage({...fileImage, preview_url:`/api/image`})
-
-    })
-
-  }, [])
-
+      setFileImage({ ...fileImage, preview_url: `` });
+    });
+  }, []);
   //파일 저장
   const saveFileImage = (e) => {
     e.preventDefault();
@@ -57,7 +68,6 @@ const EditPost = () => {
       }));
     }
   };
-
   //파일 삭제
   const deleteFileImage = () => {
     URL.revokeObjectURL(fileImage.preview_url);
@@ -92,14 +102,24 @@ const EditPost = () => {
   const sendContentToServer = async () => {
     const contentBox = {
       title: title.current.value,
-      content: content.current.value,
+      content: (content.current.value).replace(/(?:\r\n|\r|\n)/g, "<br/>"),
       district: district,
       gadaoda: gadaOda,
-      completed: false,
+      completed: completed,
     };
-    console.log(contentBox);
-    await axios.put("/api/", contentBox);
+    await axios.put("http://localhost:5001/posts/${edit}", contentBox);
   };
+
+  // 폼데이터로 보낼경우
+  // const sendContentToServer = async () => {
+  // const formData = new FormData();
+  // formData.append("title", title.current.value);
+  // formData.append("content", content.current.value.replace(/(?:\r\n|\r|\n)/g, "<br/>"));
+  // formData.append("district", distrct);
+  // formData.append("gadaoda", gadaOda);
+  // formData.append("completed", completed);
+  // await api.put("http://localhost:5001/posts/${edit}", formData);
+  //}
 
   const OPTIONS = [
     { value: "susung", name: "수성구" },
@@ -111,10 +131,9 @@ const EditPost = () => {
     { value: "dalsung", name: "달성군" },
     { value: "middle", name: "중구" },
   ];
-
   const GADAODA = [
-    { value: "hide", name: "분실" },
-    { value: "seek", name: "습득" },
+    { value: 1, name: "분실" },
+    { value: 0, name: "습득" },
   ];
   //드롭다운 벨류값 저장
   const SelectBox = (props) => {
@@ -125,7 +144,7 @@ const EditPost = () => {
     useEffect(() => {}, [district]);
 
     return (
-      <select onChange={handleChange} ref={test} value={district}>
+      <StyledSelect onChange={handleChange} value={district}>
         {props.options.map((option) => (
           <option
             key={option.value}
@@ -135,7 +154,7 @@ const EditPost = () => {
             {option.name}
           </option>
         ))}
-      </select>
+      </StyledSelect>
     );
   };
 
@@ -146,9 +165,9 @@ const EditPost = () => {
     };
 
     useEffect(() => {}, [gadaOda]);
-    //희정님이 짠 코드입니다.
+
     return (
-      <select onChange={handleChange} value={gadaOda}>
+      <StyledSelect onChange={handleChange} value={gadaOda}>
         {props.options.map((option) => (
           <option
             key={option.value}
@@ -158,26 +177,20 @@ const EditPost = () => {
             {option.name}
           </option>
         ))}
-      </select>
+      </StyledSelect>
     );
   };
 
   return (
     <>
       <StyledPostContainer>
-        <hl>게시글 수정하기</hl>
+        <StylePostTitle>게시글 수정하기</StylePostTitle>
         <br />
-        
+
         <SelectBox options={OPTIONS} />
         <GadaodaBox options={GADAODA} />
         <StyledPostInnerContainer>
-          {fileImage && (
-            <img
-              alt=""
-              src={fileImage.preview_url}
-              style={{ width: "39.9rem", height: "25rem" }}
-            ></img>
-          )}
+          {fileImage && <img alt="" src={fileImage.preview_url}></img>}
           <input
             name="imageUpload"
             type="file"
@@ -187,25 +200,17 @@ const EditPost = () => {
             style={{ display: "none" }}
             onClick={(e) => (e.target.value = null)}
           ></input>
-          <StylePostBtn>
+          <StyledPostBtn>
             <button onClick={() => inputRef.click()}>파일 찾기</button>
+            <button onClick={deleteFileImage}>이미지 삭제</button>
+          </StyledPostBtn>
+          <StyledPostSubtitle>제목</StyledPostSubtitle>
+          <StyledInputTitle type="text" ref={title} />
+          <StyledPostSubtitle>내용</StyledPostSubtitle>
+          <StyledInputContent wrap="hard" cols="20" ref={content} />
+          <StyledPostBtn>
             <button
-              style={{ width: "5rem", height: "3rem" }}
-              onClick={deleteFileImage}
-            >
-              이미지 삭제
-            </button>
-          </StylePostBtn>
-          제목
-          <input type="text" style={{ height: "2.5rem" }} ref={title}></input>
-          내용
-          <input
-            type="textarea"
-            style={{ height: "15rem" }}
-            ref={content}
-          ></input>
-          <StylePostBtn>
-            <button
+              className="btn"
               onClick={() => {
                 sendImageToServer();
                 sendContentToServer();
@@ -213,8 +218,10 @@ const EditPost = () => {
             >
               수정하기
             </button>
-            <button onClick={() => navigate("/")}>취소</button>
-          </StylePostBtn>
+            <button className="btn2" onClick={() => navigate(-1)}>
+              취소
+            </button>
+          </StyledPostBtn>
         </StyledPostInnerContainer>
       </StyledPostContainer>
     </>

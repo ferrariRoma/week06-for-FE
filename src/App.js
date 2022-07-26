@@ -11,6 +11,7 @@ import Detail from "./pages/Detail";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegiserPage";
 import Post from "./pages/Posts";
+import EditPost from "./pages/EditPosts";
 
 function App() {
   // 페이지네이션 관련 state. 페이지네이션이 이루어지는 Home component에 props로 전달.
@@ -48,6 +49,7 @@ function App() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/regist" element={<RegisterPage />} />
         <Route path="/posts" element={<Post />} />
+        <Route path="/posts/:postId/:editId" element={<EditPost />} />
       </Routes>
     </div>
   );
