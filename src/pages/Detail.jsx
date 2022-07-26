@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   StyledPostContainer,
   StyledPostInnerContainer,
@@ -6,10 +6,13 @@ import {
 import { useLocation, useNavigate } from "react-router-dom";
 import Comment from "../components/Comment";
 import axios from "axios";
-import LoadingSpinner from "../components/Spinner";
 import { useSelector } from "react-redux";
 
-const Detail = ({ loading, setLoading }) => {
+/* 
+
+*/
+
+const Detail = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const contentData = location.state;
@@ -28,6 +31,30 @@ const Detail = ({ loading, setLoading }) => {
     console.log("commentsInfo::: ", commentsInfo);
   }, []);
 
+  // 토큰 가져와서
+  const contentDeleteBtn = async () => {
+    const stortoken = JSON.parse(localStorage.getItem("user"));
+    await axios.delete(`http://localhost:5001/api/${contentData.id}`);
+    navigate("/");
+  };
+
+  const contentCompleteBtn = async (completedValue) => {
+    const requestValue = completedValue ? "uncompleted" : "completed";
+    console.log(requestValue);
+    // const result =await axios("asdfadsfadsf")
+    // true;
+    await axios({
+      url: `http://localhost:5001/api/${contentData.id}`,
+      method: "PUT",
+      data: {
+        completed: requestValue,
+      },
+    });
+    setCommentsInfo((prev) => {
+      return console.log(prev);
+    });
+  };
+
   return (
     <>
       <StyledPostContainer>
@@ -45,15 +72,22 @@ const Detail = ({ loading, setLoading }) => {
             {contentData.district}
           </div>
           <div className="content__content">{contentData.content}</div>
-          {checked__mine?.nickname === commentsInfo?.nickname ? (
+          {/* {checked__mine?.nickname === commentsInfo?.nickname ? ( */}
+          {checked__mine?.nickname === "" ? (
             <>
               <div className="modified__btn__container">
                 {contentData.completed ? (
-                  <button className="btn left__btn complete__btn__custom completed">
+                  <button
+                    className="btn left__btn complete__btn__custom completed"
+                    onClick={() => contentCompleteBtn(contentData.completed)}
+                  >
                     해결완료
                   </button>
                 ) : (
-                  <button className="btn left__btn complete__btn__custom ">
+                  <button
+                    className="btn left__btn complete__btn__custom "
+                    onClick={() => contentCompleteBtn(contentData.completed)}
+                  >
                     해결완료
                   </button>
                 )}
@@ -69,7 +103,12 @@ const Detail = ({ loading, setLoading }) => {
                     수정
                   </button>
                 )}
-                <button className="btn complete__btn__custom ">삭제</button>
+                <button
+                  className="btn complete__btn__custom "
+                  onClick={contentDeleteBtn}
+                >
+                  삭제
+                </button>
                 <button className="btn complete__btn__custom ">뒤로</button>
               </div>
             </>
