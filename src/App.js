@@ -42,11 +42,14 @@ function App() {
       </StyledHeader>
       <Routes>
         <Route path="/" element={<Home posts={posts} loading={loading} />} />
-        <Route path="api/posts/:postId" element={<Detail />} />
-        <Route path="/login" element={<LoginPage/>} />
+        <Route
+          path="/api/posts/:postId"
+          element={<Detail loading={loading} setLoading={setLoading} />}
+        />
+        <Route path="/login" element={<LoginPage />} />
         <Route path="/regist" element={<RegisterPage />} />
-        <Route path="/posts" element={<Post/>}/>
-        <Route path="/posts/:postId/:editId" element={<EditPost/>}/>
+        <Route path="/posts" element={<Post />} />
+        <Route path="/posts/:postId/:editId" element={<EditPost />} />
       </Routes>
     </div>
   );

@@ -95,7 +95,7 @@ const Post = () => {
   ];
 
   const GADAODA = [
-    //0 분실 : 1 습득 
+    //0 분실 : 1 습득
     { value: 0, name: "분실" },
     { value: 1, name: "습득" },
   ];
