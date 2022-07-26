@@ -9,6 +9,8 @@ export const StyledHeader = styled.div`
   width: 100vw;
   height: 5rem;
   display: flex;
+  background-color: #15203f;
+  color: white;
   justify-content: space-between;
   padding: 0 5rem;
   @media screen and (max-width: 600px) {
@@ -100,14 +102,45 @@ export const StyledPageLi = styled.li`
   }
 `;
 export const StyledPostContainer = styled.div`
-  margin-top: 5rem;
-  position: fixed;
-  top: 5rem;
+  margin-top : 8rem;
+  margin-bottom : 2rem;
+  position: relative;
+  top: 1rem;
   left: 50%;
   transform: translate(-50%, 0);
   border: 1px solid black;
-  width: 40rem;
-  height: 60rem;
+  
+
+@media (max-width: 575px) {
+  overflow : auto;
+  width : 300px;
+} 
+ 
+
+@media (min-width: 576px) and (max-width: 767px) {
+  overflow : auto;
+  width : 500px;
+}
+ 
+
+@media (min-width: 768px) and (max-width: 991px) {
+  width : 700px;
+  overflow : auto;
+} 
+ 
+@media (min-width: 992px) and (max-width: 1199px) {
+
+  width : 900px;
+  overflow : auto;
+} 
+ 
+
+@media (min-width: 1200px) {
+    width : 1100px;
+    overflow : auto;
+
+}
+
 `;
 
 export const StyledPostInnerContainer = styled.div`
@@ -115,9 +148,22 @@ export const StyledPostInnerContainer = styled.div`
   flex-direction: column;
 `;
 
-export const StylePostBtn = styled.div`
+export const StyledPostBtn = styled.div`
   display: flex;
-  align-items: center;
+
   justify-content: center;
   margin-top: 1rem;
+  gap: 1rem;
+`;
+
+export const StyledSelect = styled.select`
+  width: 5rem;
+  padding: 0.8em 0.5em;
+  border: 1px solid #15203f;
+  background: url("https://t1.daumcdn.net/cfile/tistory/99761B495C84AA8716")
+    no-repeat 95% 50%;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  margin: 0.5rem;
 `;

@@ -3,9 +3,12 @@ import { useNavigate } from "react-router-dom";
 import {
   StyledPostContainer,
   StyledPostInnerContainer,
-  StylePostBtn,
+  StyledPostBtn,
+  StyledSelect
 } from "../components/styled";
 import axios from "axios";
+import "./post.css" 
+
 
 const Post = () => {
   const navigate = useNavigate();
@@ -102,7 +105,8 @@ const Post = () => {
     useEffect(() => {}, [district]);
 
     return (
-      <select onChange={handleChange} value={district}>
+      <StyledSelect onChange={handleChange} value={district}
+      >
         {props.options.map((option) => (
           <option
             key={option.value}
@@ -112,7 +116,7 @@ const Post = () => {
             {option.name}
           </option>
         ))}
-      </select>
+      </StyledSelect>
     );
   };
 
@@ -125,7 +129,7 @@ const Post = () => {
     useEffect(() => {}, [gadaOda]);
     //희정님이 짠 코드입니다.
     return (
-      <select onChange={handleChange} value={gadaOda}>
+      <StyledSelect onChange={handleChange} value={gadaOda}>
         {props.options.map((option) => (
           <option
             key={option.value}
@@ -135,16 +139,15 @@ const Post = () => {
             {option.name}
           </option>
         ))}
-      </select>
+      </StyledSelect>
     );
   };
 
   return (
     <>
       <StyledPostContainer>
-        <hl>게시글 작성하기</hl>
+        <hl>게시글 작성하기</hl>      
         <br />
-        
         <SelectBox options={OPTIONS} />
         <GadaodaBox options={GADAODA} />
         <StyledPostInnerContainer>
@@ -152,7 +155,7 @@ const Post = () => {
             <img
               alt=""
               src={fileImage.preview_url}
-              style={{ width: "39.9rem", height: "25rem" }}
+            
             ></img>
           )}
           <input
@@ -164,15 +167,14 @@ const Post = () => {
             style={{ display: "none" }}
             onClick={(e) => (e.target.value = null)}
           ></input>
-          <StylePostBtn>
-            <button onClick={() => inputRef.click()}>파일 찾기</button>
-            <button
-              style={{ width: "5rem", height: "3rem" }}
+          <StyledPostBtn>
+            <button  className = "btn" onClick={() => inputRef.click()}>파일찾기</button>
+            <button className = "btn2"
               onClick={deleteFileImage}
             >
-              이미지 삭제
+              이미지삭제
             </button>
-          </StylePostBtn>
+          </StyledPostBtn>
           제목
           <input type="text" style={{ height: "2.5rem" }} ref={title}></input>
           내용
@@ -181,8 +183,8 @@ const Post = () => {
             style={{ height: "15rem" }}
             ref={content}
           ></input>
-          <StylePostBtn>
-            <button
+          <StyledPostBtn>
+            <button className = "btn"
               onClick={() => {
                 sendImageToServer();
                 sendContentToServer();
@@ -190,8 +192,8 @@ const Post = () => {
             >
               작성하기
             </button>
-            <button onClick={() => navigate("/")}>취소</button>
-          </StylePostBtn>
+            <button className = "btn2" onClick={() => navigate("/")}>취소</button>
+          </StyledPostBtn>
         </StyledPostInnerContainer>
       </StyledPostContainer>
     </>

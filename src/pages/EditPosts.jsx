@@ -3,7 +3,8 @@ import { useNavigate, useParams, useLocation } from "react-router-dom";
 import {
   StyledPostContainer,
   StyledPostInnerContainer,
-  StylePostBtn,
+  StyledPostBtn,
+  StyledSelect,
 } from "../components/styled";
 import axios from "axios";
 
@@ -15,6 +16,7 @@ const EditPost = (prop) => {
   const content = useRef();
   const [gadaOda, setGadaOda] = useState("");
   const [district, setDistrict] = useState("");
+  const [completed, setCompleted] = useState("");
   let inputRef;
   const [fileImage, setFileImage] = useState({
     image_file: "",
@@ -27,6 +29,7 @@ const EditPost = (prop) => {
   // setDistrict(result.district)
   // const title = useRef(result.title);
   // const content = useRef(result.content);
+  // setCompleted(result.completed)
 
   useEffect(() => {
     const getPost = async () => {
@@ -96,16 +99,15 @@ const EditPost = (prop) => {
     }
   };
   //서버로 제목, 글내용, 습득or분실, 구 정보 보내기
-  //formdata로 보내야 되나요?
+
   const sendContentToServer = async () => {
     const contentBox = {
       title: title.current.value,
       content: content.current.value,
       district: district,
       gadaoda: gadaOda,
-      completed: false,
+      completed: completed,
     };
-
     await axios.put("http://localhost:5001/posts/${edit_id}", contentBox);
   };
 
@@ -116,7 +118,7 @@ const EditPost = (prop) => {
   // formData.append("content", content.current.value);
   // formData.append("district", distrct);
   // formData.append("gadaoda", gadaOda);
-  // formData.append("completed", false);
+  // formData.append("completed", completed);
   // await api.put("http://localhost:5001/posts/${edit_id}", formData);
   //}
 
@@ -144,7 +146,7 @@ const EditPost = (prop) => {
     useEffect(() => {}, [district]);
 
     return (
-      <select onChange={handleChange} value={district}>
+      <StyledSelect onChange={handleChange} value={district} sel>
         {props.options.map((option) => (
           <option
             key={option.value}
@@ -154,7 +156,7 @@ const EditPost = (prop) => {
             {option.name}
           </option>
         ))}
-      </select>
+      </StyledSelect>
     );
   };
 
@@ -167,7 +169,7 @@ const EditPost = (prop) => {
     useEffect(() => {}, [gadaOda]);
 
     return (
-      <select onChange={handleChange} value={gadaOda}>
+      <StyledSelect onChange={handleChange} value={gadaOda}>
         {props.options.map((option) => (
           <option
             key={option.value}
@@ -177,7 +179,7 @@ const EditPost = (prop) => {
             {option.name}
           </option>
         ))}
-      </select>
+      </StyledSelect>
     );
   };
 
@@ -190,13 +192,7 @@ const EditPost = (prop) => {
         <SelectBox options={OPTIONS} />
         <GadaodaBox options={GADAODA} />
         <StyledPostInnerContainer>
-          {fileImage && (
-            <img
-              alt=""
-              src={fileImage.preview_url}
-              style={{ width: "39.9rem", height: "25rem" }}
-            ></img>
-          )}
+          {fileImage && <img alt="" src={fileImage.preview_url}></img>}
           <input
             name="imageUpload"
             type="file"
@@ -206,15 +202,10 @@ const EditPost = (prop) => {
             style={{ display: "none" }}
             onClick={(e) => (e.target.value = null)}
           ></input>
-          <StylePostBtn>
+          <StyledPostBtn>
             <button onClick={() => inputRef.click()}>파일 찾기</button>
-            <button
-              style={{ width: "5rem", height: "3rem" }}
-              onClick={deleteFileImage}
-            >
-              이미지 삭제
-            </button>
-          </StylePostBtn>
+            <button onClick={deleteFileImage}>이미지 삭제</button>
+          </StyledPostBtn>
           제목
           <input type="text" style={{ height: "2.5rem" }} ref={title}></input>
           내용
@@ -223,7 +214,7 @@ const EditPost = (prop) => {
             style={{ height: "15rem" }}
             ref={content}
           ></input>
-          <StylePostBtn>
+          <StyledPostBtn>
             <button
               onClick={() => {
                 sendImageToServer();
@@ -233,7 +224,7 @@ const EditPost = (prop) => {
               수정하기
             </button>
             <button onClick={() => navigate("/")}>취소</button>
-          </StylePostBtn>
+          </StyledPostBtn>
         </StyledPostInnerContainer>
       </StyledPostContainer>
     </>
