@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 const MainItemContainer = memo(({ post }) => {
   const navigate = useNavigate();
   const onClickPost = (id) => {
-    navigate(`/api/posts/${id}`);
+    navigate(`/api/posts/${id}`, { state: post });
   };
   return (
     <>
