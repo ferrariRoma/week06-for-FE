@@ -76,10 +76,11 @@ function App() {
           <button onClick={logout}>로그아웃</button>
         </div>
         </>
-        ):<>
+        ):(<>
             <div onClick={()=>navigater("/login")}>
           <FontAwesomeIcon icon={faUser} style={{ fontSize: "3rem" }} />
-        </div></>}
+        </div>
+        </>)}
 
       </StyledHeader>
       <Routes>

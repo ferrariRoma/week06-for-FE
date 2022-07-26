@@ -7,12 +7,15 @@ const RegisterPage = () => {
     const [email, setEmail] = React.useState("");
     const [password, setPassword] = React.useState("");
     const [confirmPassword, setConfirmPassword] = React.useState("");
-    const [nickName, setNickName] = React.useState("");
+    const [nickname, setNickname] = React.useState("");
     
     
-    const [emailError, setEmailError] = React.useState(false);
-    const [passwordError, setPasswordError] = React.useState(false);
-    const [confirmPasswordError, setConfirmPasswordError] = React.useState(false);
+    const [emailError, setEmailError] = React.useState(true);
+    const [passwordError, setPasswordError] = React.useState(true);
+    const [confirmPasswordError, setConfirmPasswordError] = React.useState(true);
+    const [emailCheckError, setEmailCheckError] = React.useState(true);
+    const [nickCheckError, setNickCheckError] = React.useState(true);
+
 
 
     const navigater = useNavigate();
@@ -35,7 +38,7 @@ const RegisterPage = () => {
       };
 
       const onNicNameHandler = (event) => {
-        setNickName(event.currentTarget.value);
+        setNickname(event.currentTarget.value);
       }
       const onConfirmPasswordHandler = (event) => {
         if (password === event.currentTarget.value) setConfirmPasswordError(false);
@@ -47,7 +50,7 @@ const RegisterPage = () => {
         const data = {
          email ,
          password ,
-         nickName ,
+         nickname ,
         }
  
          axios.post("http://localhost:5001/signup",data).then(response=>{
@@ -57,11 +60,29 @@ const RegisterPage = () => {
          })      
         }
 
+      const checkEmail = () => {
+        axios.get(`http://localhost:5001/user/${email}`).then(response=>{
+          //email 중복이 없는 경우
+          setEmailCheckError(false);
+        }).catch(error=> {
+          //중복이 있는 경우
+          setEmailCheckError(true);
+          alert(error);
+         })      
+        }
 
+      const checkNickname = () => {
+        axios.get(`http://localhost:5001/user/${nickname}`).then(response=>{
+          setNickCheckError(false);
+        }).catch(error=> {
+          alert(error);
+          setNickCheckError(true);
+         })      
+        }
 
       const onSubmitHandler = (event) => {
         event.preventDefault();
-        if (emailError===false&& confirmPasswordError===false&&passwordError===false) 
+        if (emailError===false&& confirmPasswordError===false&&passwordError===false&&emailCheckError===false&&nickCheckError===false) 
           {alert("가입완료")
           navigater("/login")}
           else 
@@ -78,13 +99,13 @@ const RegisterPage = () => {
               <Row>
                <label> 아이디</label>
                <input type="text" value={email} placeholder="Email" onChange={onEmailHandler} required />
-               <button>중복체크</button>
+               <button onClick={checkEmail}>중복체크</button>
               </Row>
               {emailError && <div class="invalid-input"> 아이디는 이메일 형식으로 입력해주세요 </div>}
               <Row>
                <label> 닉네임</label>
-               <input type="text" value={nickName} placeholder="Nickname" onChange={onNicNameHandler} required/>
-               <button>중복체크</button>
+               <input type="text" value={nickname} placeholder="Nickname" onChange={onNicNameHandler} required/>
+               <button onClick={checkNickname}>중복체크</button>
               </Row>
               <Row>
                <label> 비밀번호</label>
