@@ -27,21 +27,23 @@ function App() {
 
 
   const logout = () => {
-    sessionStorage.removeItem("user")
     dispatch(clearUser())
+    localStorage.removeItem("user")
     navigater("/")
   }
 
   useEffect(()=>{
-    const storcookie = JSON.parse(sessionStorage.getItem("user"))
-    if (user_data===false && storcookie !==null) {
-      console.log(storcookie.email, storcookie.nickname)
-      dispatch(loginUser(
-        {
-           email:storcookie.email,
-           nickname: storcookie.nickname,
-        }
-       ))
+    const stortoken = JSON.parse(localStorage.getItem("user"))
+    if (user_data===false && stortoken !==null) {      
+      axios.get("http://localhost:5001//user/userinfo",{headers:{Authorization:stortoken}}).then(response=>{
+        dispatch(loginUser(
+          {
+             email:response.data.email,
+             nickname: response.data.nickname,
+          }
+         ))
+      })
+     
     }
 
   })
@@ -69,10 +71,10 @@ function App() {
         <div onClick={()=>alert("마이페이지")}>
           <FontAwesomeIcon icon={faUser} style={{ fontSize: "3rem" }} />
         </div>
+        <div>{user_nick} 님</div>
         <div>
           <button onClick={logout}>로그아웃</button>
         </div>
-        <div>{user_nick}님 환영합니다.</div>
         </>
         ):<>
             <div onClick={()=>navigater("/login")}>

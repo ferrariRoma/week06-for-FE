@@ -1,9 +1,13 @@
 import styled from "styled-components";
 
+
+
 export const StyledHeader = styled.div`
   position: fixed;
   z-index: 1;
   background-color: white;
+  background-color: #15203f;
+  color:white;
   top: 0;
   right: 0;
   width: 100vw;
@@ -23,6 +27,12 @@ export const StyledHeader = styled.div`
       display: flex;
       align-items: center;
     }
+  }
+  button{
+    color:white;
+    background-color: transparent;
+    border: 3px solid white;
+    font-weight: bold;
   }
 `;
 
@@ -121,3 +131,113 @@ export const StylePostBtn = styled.div`
   justify-content: center;
   margin-top: 1rem;
 `;
+
+export const Row = styled.div`
+display: flex;
+align-items: center;
+margin-top: 15px;
+border-bottom: 1px solid #555;
+label {
+  display: inline-block;
+  width: 100px;
+}
+input {
+  padding: 10px;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  &::placeholder {
+    padding: 0 5px;
+    font-style: italic;
+    text-align: right;
+  }
+}
+`;
+
+export const SignupDiv = styled.div`
+border: 0.1rem solid rgba(0, 0, 0, 0.2);
+border-radius: 0.1rem;
+box-shadow: rgba(0, 0, 0, 0.3) 0.4rem 0.4rem 4rem 0rem;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+margin: 10rem;
+padding: 2rem;
+
+h2 {
+  margin-bottom: 1rem;
+  font-size: 2rem;
+}
+button{
+  font-size: 1rem;
+}
+input{
+  width: 100%
+}
+label{
+  font-size: 0.8rem;
+}
+`;
+
+export const LoginDiv = styled.div`
+border: 0.1rem solid rgba(0, 0, 0, 0.2);
+border-radius: 0.1rem;
+box-shadow: rgba(0, 0, 0, 0.3) 0.4rem 0.4rem 4rem 0rem;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+margin: 10rem;
+padding: 2rem;
+h2 {
+  margin-bottom: 1rem;
+  font-size: 2rem;
+}
+
+button {
+font-size: 25px;
+padding: 15px 30px;
+border: 3px solid #15203f;
+background-color: transparent;
+color: #15203f;
+text-transform: uppercase;
+letter-spacing: 5px;
+font-weight: bold;
+position: relative;
+transition: all 0.4s;
+overflow: hidden;
+border-radius: 10px;
+}
+
+button:focus {
+outline: none;
+}
+
+button::before {
+content: "";
+position: absolute;
+height: 100%;
+width: 100%;
+background-color: #15203f;
+top: 0;
+left: -100%;
+transition: all 0.4s;
+z-index: -1;
+}
+
+button:hover::before {
+transform: translateX(100%);
+}
+
+button:hover {
+color: #3c3e70;
+}
+
+
+
+input{
+  width: 100%
+}
+`
+;
