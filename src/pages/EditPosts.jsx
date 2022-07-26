@@ -13,7 +13,6 @@ import {
 import axios from "axios";
 import "./post.css";
 
-
 const EditPost = (prop) => {
   const { edit } = useParams();
   const navigate = useNavigate();
@@ -103,23 +102,25 @@ const EditPost = (prop) => {
   const sendContentToServer = async () => {
     const contentBox = {
       title: title.current.value,
-      content: content.current.value.replace(/(?:\r\n|\r|\n)/g, "<br/>"),
+      content: (content.current.value).replace(/(?:\r\n|\r|\n)/g, "<br/>"),
       district: district,
       gadaoda: gadaOda,
       completed: completed,
     };
     await axios.put("http://localhost:5001/posts/${edit}", contentBox);
   };
+
   // 폼데이터로 보낼경우
   // const sendContentToServer = async () => {
   // const formData = new FormData();
   // formData.append("title", title.current.value);
-  // formData.append("content", content.current.value);
+  // formData.append("content", content.current.value.replace(/(?:\r\n|\r|\n)/g, "<br/>"));
   // formData.append("district", distrct);
   // formData.append("gadaoda", gadaOda);
   // formData.append("completed", completed);
   // await api.put("http://localhost:5001/posts/${edit}", formData);
   //}
+
   const OPTIONS = [
     { value: "susung", name: "수성구" },
     { value: "east", name: "동구" },
@@ -131,8 +132,8 @@ const EditPost = (prop) => {
     { value: "middle", name: "중구" },
   ];
   const GADAODA = [
-    { value: "gada", name: "분실" },
-    { value: "oda", name: "습득" },
+    { value: 1, name: "분실" },
+    { value: 0, name: "습득" },
   ];
   //드롭다운 벨류값 저장
   const SelectBox = (props) => {
@@ -208,7 +209,8 @@ const EditPost = (prop) => {
           <StyledPostSubtitle>내용</StyledPostSubtitle>
           <StyledInputContent wrap="hard" cols="20" ref={content} />
           <StyledPostBtn>
-            <button className="btn"
+            <button
+              className="btn"
               onClick={() => {
                 sendImageToServer();
                 sendContentToServer();
@@ -216,8 +218,9 @@ const EditPost = (prop) => {
             >
               수정하기
             </button>
-            <button  className="btn2" 
-            onClick={() => navigate(-1)}>취소</button>
+            <button className="btn2" onClick={() => navigate(-1)}>
+              취소
+            </button>
           </StyledPostBtn>
         </StyledPostInnerContainer>
       </StyledPostContainer>

@@ -80,7 +80,6 @@ const Post = () => {
       gadaoda: gadaOda,
       completed: false,
     };
-    console.log(contentBox);
     await axios.post("http://localhost:5001/posts", contentBox);
   };
 
@@ -96,8 +95,9 @@ const Post = () => {
   ];
 
   const GADAODA = [
-    { value: "gada", name: "분실" },
-    { value: "oda", name: "습득" },
+    //0 분실 : 1 습득 
+    { value: 0, name: "분실" },
+    { value: 1, name: "습득" },
   ];
   //드롭다운 벨류값 저장
   const SelectBox = (props) => {
