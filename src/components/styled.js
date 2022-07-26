@@ -102,45 +102,40 @@ export const StyledPageLi = styled.li`
   }
 `;
 export const StyledPostContainer = styled.div`
-  margin-top : 8rem;
-  margin-bottom : 2rem;
+  margin-top: 8rem;
+  margin-bottom: 2rem;
   position: relative;
   top: 1rem;
   left: 50%;
   transform: translate(-50%, 0);
-  border: 1px solid black;
-  
+  border: transparent;
+  border-radius: 1rem;
+  box-shadow: 5px 5px 5px 5px lightgray;
 
-@media (max-width: 575px) {
-  overflow : auto;
-  width : 300px;
-} 
- 
+  @media (max-width: 575px) {
+    overflow: auto;
+    width: 300px;
+  }
 
-@media (min-width: 576px) and (max-width: 767px) {
-  overflow : auto;
-  width : 500px;
-}
- 
+  @media (min-width: 576px) and (max-width: 767px) {
+    overflow: auto;
+    width: 500px;
+  }
 
-@media (min-width: 768px) and (max-width: 991px) {
-  width : 700px;
-  overflow : auto;
-} 
- 
-@media (min-width: 992px) and (max-width: 1199px) {
+  @media (min-width: 768px) and (max-width: 991px) {
+    width: 700px;
+    overflow: auto;
+  }
 
-  width : 900px;
-  overflow : auto;
-} 
- 
+  @media (min-width: 992px) and (max-width: 1199px) {
+    width: 900px;
+    overflow: auto;
+  }
 
-@media (min-width: 1200px) {
-    width : 1100px;
-    overflow : auto;
-
-}
-
+  @media (min-width: 1200px) {
+    width: 1100px;
+    overflow: auto;
+  }
 `;
 
 export const StyledPostInnerContainer = styled.div`
@@ -150,7 +145,6 @@ export const StyledPostInnerContainer = styled.div`
 
 export const StyledPostBtn = styled.div`
   display: flex;
-
   justify-content: center;
   margin-top: 1rem;
   gap: 1rem;
@@ -166,4 +160,35 @@ export const StyledSelect = styled.select`
   -moz-appearance: none;
   appearance: none;
   margin: 0.5rem;
+`;
+
+export const StylePostTitle = styled.div`
+  margin-top: 1rem;
+  font-size: 2rem;
+  font-weight: bold;
+`;
+
+export const StyledPostSubtitle = styled.div`
+  font-size: 1.5rem;
+  margin: 1rem;
+  font-weight: bold;
+  text-align: left;
+`;
+
+export const StyledInputTitle = styled.input`
+  height: 2.5rem;
+  border: transparent;
+  box-shadow: 1px 1px 1px 1px lightgray;
+  outline: none;
+  box-sizing: border-box;
+  padding: 1rem;
+`;
+
+export const StyledInputContent = styled.textarea`
+  height: 15rem;
+  border: transparent;
+  box-shadow: 1px 1px 1px 1px lightgray;
+  outline: none;
+  box-sizing: border-box;
+  padding: 1rem;
 `;

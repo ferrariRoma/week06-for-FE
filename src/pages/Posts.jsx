@@ -4,11 +4,14 @@ import {
   StyledPostContainer,
   StyledPostInnerContainer,
   StyledPostBtn,
-  StyledSelect
+  StyledSelect,
+  StylePostTitle,
+  StyledPostSubtitle,
+  StyledInputContent,
+  StyledInputTitle,
 } from "../components/styled";
 import axios from "axios";
-import "./post.css" 
-
+import "./post.css";
 
 const Post = () => {
   const navigate = useNavigate();
@@ -21,7 +24,6 @@ const Post = () => {
     image_file: "",
     preview_url: "https://memegenerator.net/img/instances/80735467.jpg",
   });
-
 
   //파일 저장
   const saveFileImage = (e) => {
@@ -63,11 +65,12 @@ const Post = () => {
         preview_URL: "https://memegenerator.net/img/instances/80735467.jpg",
       });
       navigate("/");
-      window.location.reload()
+      window.location.reload();
     } else {
       alert("사진을 등록하세요!");
     }
   };
+
   //서버로 제목, 글내용, 습득or분실, 구 정보 보내기
   const sendContentToServer = async () => {
     const contentBox = {
@@ -93,8 +96,8 @@ const Post = () => {
   ];
 
   const GADAODA = [
-    { value: "hide", name: "분실" },
-    { value: "seek", name: "습득" },
+    { value: "gada", name: "분실" },
+    { value: "oda", name: "습득" },
   ];
   //드롭다운 벨류값 저장
   const SelectBox = (props) => {
@@ -105,8 +108,7 @@ const Post = () => {
     useEffect(() => {}, [district]);
 
     return (
-      <StyledSelect onChange={handleChange} value={district}
-      >
+      <StyledSelect onChange={handleChange} value={district}>
         {props.options.map((option) => (
           <option
             key={option.value}
@@ -146,18 +148,12 @@ const Post = () => {
   return (
     <>
       <StyledPostContainer>
-        <hl>게시글 작성하기</hl>      
+        <StylePostTitle>게시글 작성하기</StylePostTitle>
         <br />
         <SelectBox options={OPTIONS} />
         <GadaodaBox options={GADAODA} />
         <StyledPostInnerContainer>
-          {fileImage && (
-            <img
-              alt=""
-              src={fileImage.preview_url}
-            
-            ></img>
-          )}
+          {fileImage && <img alt="" src={fileImage.preview_url}></img>}
           <input
             name="imageUpload"
             type="file"
@@ -168,23 +164,29 @@ const Post = () => {
             onClick={(e) => (e.target.value = null)}
           ></input>
           <StyledPostBtn>
-            <button  className = "btn" onClick={() => inputRef.click()}>파일찾기</button>
-            <button className = "btn2"
-              onClick={deleteFileImage}
-            >
+            <button className="btn" onClick={() => inputRef.click()}>
+              파일찾기
+            </button>
+            <button className="btn2" onClick={deleteFileImage}>
               이미지삭제
             </button>
           </StyledPostBtn>
-          제목
-          <input type="text" style={{ height: "2.5rem" }} ref={title}></input>
-          내용
-          <input
-            type="textarea"
-            style={{ height: "15rem" }}
+          <StyledPostSubtitle>제목</StyledPostSubtitle>
+          <StyledInputTitle
+            type="text"
+            ref={title}
+            placeholder="제목을 입력해주세요."
+          />
+          <StyledPostSubtitle>내용</StyledPostSubtitle>
+          <StyledInputContent
+            wrap="hard"
+            cols="20"
             ref={content}
-          ></input>
+            placeholder="내용을 입력해주세요."
+          />
           <StyledPostBtn>
-            <button className = "btn"
+            <button
+              className="btn"
               onClick={() => {
                 sendImageToServer();
                 sendContentToServer();
@@ -192,7 +194,9 @@ const Post = () => {
             >
               작성하기
             </button>
-            <button className = "btn2" onClick={() => navigate("/")}>취소</button>
+            <button className="btn2" onClick={() => navigate("-1")}>
+              취소
+            </button>
           </StyledPostBtn>
         </StyledPostInnerContainer>
       </StyledPostContainer>
