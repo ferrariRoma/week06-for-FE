@@ -92,7 +92,7 @@ const EditPost = (prop) => {
       const formData = new FormData();
       formData.append("file", fileImage.image_file);
       await axios.put(`http://13.209.4.223:8080/api/posts/${post.id}`, formData);
-      alert("서버에 등록이 완료되었습니다!");
+      alert("게시글이 작성되었습니다.");
       setFileImage({
         image_file: "",
         preview_URL: "https://memegenerator.net/img/instances/80735467.jpg",
