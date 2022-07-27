@@ -62,7 +62,7 @@ const RegisterPage = () => {
         }
 
       const checkEmail = () => {
-        instance.get(`user/${email}`).then(response=>{
+        instance.post(`user/${email}`).then(response=>{
           //email 중복이 없는 경우
           setEmailCheckError(false);
         }).catch(error=> {
@@ -73,7 +73,7 @@ const RegisterPage = () => {
         }
 
       const checkNickname = () => {
-        instance.get(`/user/${nickname}`).then(response=>{
+        instance.post(`/user/${nickname}`).then(response=>{
           setNickCheckError(false);
         }).catch(error=> {
           alert(error);
