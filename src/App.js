@@ -18,6 +18,7 @@ import EditPost from "./pages/EditPosts";
 import Introduce from "./pages/Introduce";
 import instance from "./axiosConfig";
 
+
 function App() {
   // 페이지네이션 관련 state. 페이지네이션이 이루어지는 Home component에 props로 전달.
   const [posts, setPosts] = useState([]);
@@ -136,6 +137,5 @@ function App() {
     </div>
   );
 }
-import instance from "./axiosConfig";
 
 export default App;
