@@ -14,9 +14,9 @@ import axios from "axios";
 import "./post.css";
 
 const EditPost = (prop) => {
-  const { edit } = useParams();
+  
   const navigate = useNavigate();
-  // const location = useLocation();
+  const location = useLocation();
   const title = useRef();
   const content = useRef();
   const [gadaOda, setGadaOda] = useState("");
@@ -28,7 +28,7 @@ const EditPost = (prop) => {
     preview_url: "https://memegenerator.net/img/instances/80735467.jpg",
   });
 
-  // const {result} = location.state
+  const edit = location.state
   // setFileImage(result.fileImage.preview_url)
   // setGadaOda(result.gadaoda)
   // setDistrict(result.district)
@@ -38,18 +38,19 @@ const EditPost = (prop) => {
 
   useEffect(() => {
     const getPost = async () => {
-      const { data } = await axios.get(`http://localhost:5001/posts/${edit}`);
+      const { data } = await axios.get( `http://localhost:5001/posts/${edit.id}`);
       return data;
     };
     const getImage = async () => {
-      const { data } = await axios.get(``);
+      const { data } = await axios.get(`http://localhost:5001/posts/${edit.id}`);
       return data;
     };
     getPost().then((result) => {
       setGadaOda(result.gadaOda);
-      setDistrict(result.setDistrict);
+      setDistrict(result.district);
       title.current.value = result.title;
       content.current.value = result.content;
+      setCompleted(result.completed)
     });
     getImage().then((result) => {
       setFileImage({ ...fileImage, preview_url: `` });
@@ -87,7 +88,7 @@ const EditPost = (prop) => {
     if (fileImage.image_file) {
       const formData = new FormData();
       formData.append("file", fileImage.image_file);
-      await axios.put("/api/", formData);
+      await axios.put(`http://localhost:5001/posts/${edit.id}`, formData);
       alert("서버에 등록이 완료되었습니다!");
       setFileImage({
         image_file: "",
@@ -105,9 +106,10 @@ const EditPost = (prop) => {
       content: (content.current.value).replace(/(?:\r\n|\r|\n)/g, "<br/>"),
       district: district,
       gadaoda: gadaOda,
-      completed: completed,
+      completed : completed,
     };
-    await axios.put("http://localhost:5001/posts/${edit}", contentBox);
+    console.log(contentBox)
+    await axios.put(`http://localhost:5001/posts/${edit.id}`, contentBox);
   };
 
   // 폼데이터로 보낼경우
@@ -132,8 +134,8 @@ const EditPost = (prop) => {
     { value: "middle", name: "중구" },
   ];
   const GADAODA = [
-    { value: 1, name: "분실" },
-    { value: 0, name: "습득" },
+    { value: "gada", name: "분실" },
+    { value: "oda", name: "습득" },
   ];
   //드롭다운 벨류값 저장
   const SelectBox = (props) => {
