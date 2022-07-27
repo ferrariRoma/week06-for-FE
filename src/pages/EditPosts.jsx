@@ -124,15 +124,16 @@ const EditPost = (prop) => {
   //}
 
   const OPTIONS = [
-    { value: "susung", name: "수성구" },
-    { value: "east", name: "동구" },
-    { value: "west", name: "서구" },
-    { value: "south", name: "남구" },
-    { value: "north", name: "북구" },
-    { value: "dalseo", name: "달서구" },
-    { value: "dalsung", name: "달성군" },
-    { value: "middle", name: "중구" },
+    { value: "수성구", name: "수성구" },
+    { value: "동구", name: "동구" },
+    { value: "서구", name: "서구" },
+    { value: "남구", name: "남구" },
+    { value: "북구", name: "북구" },
+    { value: "달서구", name: "달서구" },
+    { value: "달성군", name: "달성군" },
+    { value: "중구", name: "중구" },
   ];
+
   const GADAODA = [
     { value: "gada", name: "분실" },
     { value: "oda", name: "습득" },
