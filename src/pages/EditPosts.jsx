@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import { useNavigate, useParams, useLocation } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import {
   StyledPostContainer,
   StyledPostInnerContainer,
@@ -103,7 +103,7 @@ const EditPost = (prop) => {
   const sendContentToServer = async () => {
     const contentBox = {
       title: title.current.value,
-      content: (content.current.value).replace(/(?:\r\n|\r|\n)/g, "<br/>"),
+      content: content.current.value.replace(/(?:\r\n|\r|\n)/g, "<br/>"),
       district: district,
       gadaoda: gadaOda,
       completed : completed,
