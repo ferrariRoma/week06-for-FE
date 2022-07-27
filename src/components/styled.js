@@ -385,3 +385,27 @@ export const CommentBox = styled.div`
     }
   }
 `;
+
+export const StyledPostCommentBox = styled.div`
+  margin: auto;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  width: 30rem;
+
+  display: flex;
+
+  textarea {
+    width: 80%;
+    height: 5rem;
+    resize: none;
+    border: 0.1rem solid rgba(0, 0, 0, 0.4);
+    border-radius: 1rem;
+    padding: 1rem;
+
+    margin-right: 1rem;
+    font-size: 1.4rem;
+  }
+  button {
+    width: 20%;
+  }
+`;
