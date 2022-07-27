@@ -12,6 +12,7 @@ import {
 } from "../components/styled";
 import axios from "axios";
 import "./post.css";
+import instance from "../axiosConfig";
 
 const Post = () => {
   const navigate = useNavigate();
@@ -56,12 +57,12 @@ const Post = () => {
     };
   }, []);
   //서버로 이미지 보내기
-  const sendImageToServer = async () => {
+  const sendImageToServer = async () => {  
     if (fileImage.image_file) {
       const formData = new FormData();
       formData.append("file", fileImage.image_file);
-      await axios.post("http://localhost:5001/posts", formData);
-      alert("서버에 등록이 완료되었습니다!");
+      await axios.post(`/api/posts`, formData);
+      alert("게시글이 작성되었습니다.");
       setFileImage({
         image_file: "",
         preview_URL: "https://memegenerator.net/img/instances/80735467.jpg",
@@ -83,7 +84,7 @@ const Post = () => {
       gadaoda: gadaOda,
       completed: false,
     };
-    await axios.post("http://localhost:5001/posts", contentBox);
+    await axios.post(`/api/posts`, contentBox);
   };
 
   const OPTIONS = [

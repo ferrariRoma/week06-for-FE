@@ -36,8 +36,7 @@ function App() {
   useEffect(() => {
     const stortoken = JSON.parse(localStorage.getItem("user"));
     if (user_data === false && stortoken !== null) {
-      axios
-        .get("http://localhost:5001//user/userinfo", {
+      instance.get("/user/userinfo", {
           headers: { Authorization: stortoken },
         })
         .then((response) => {
