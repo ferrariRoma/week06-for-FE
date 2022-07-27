@@ -27,8 +27,11 @@ const EditPost = (prop) => {
     image_file: "",
     preview_url: "https://memegenerator.net/img/instances/80735467.jpg",
   });
+  const stortoken = JSON.parse(localStorage.getItem("user"));
+  const [user, setUser] = useState("");
+  setUser(stortoken.nickname)
 
-  const edit = location.state
+  const post = location.state
   // setFileImage(result.fileImage.preview_url)
   // setGadaOda(result.gadaoda)
   // setDistrict(result.district)
@@ -38,11 +41,11 @@ const EditPost = (prop) => {
 
   useEffect(() => {
     const getPost = async () => {
-      const { data } = await axios.get( `http://localhost:5001/posts/${edit.id}`);
+      const { data } = await axios.get(`http://13.209.4.223:8080/api/posts/${post.id}`);
       return data;
     };
     const getImage = async () => {
-      const { data } = await axios.get(`http://localhost:5001/posts/${edit.id}`);
+      const { data } = await axios.get(`http://13.209.4.223:8080/api/posts/${post.id}`);
       return data;
     };
     getPost().then((result) => {
@@ -88,7 +91,7 @@ const EditPost = (prop) => {
     if (fileImage.image_file) {
       const formData = new FormData();
       formData.append("file", fileImage.image_file);
-      await axios.put(`http://localhost:5001/posts/${edit.id}`, formData);
+      await axios.put(`http://13.209.4.223:8080/api/posts/${post.id}`, formData);
       alert("서버에 등록이 완료되었습니다!");
       setFileImage({
         image_file: "",
@@ -102,25 +105,27 @@ const EditPost = (prop) => {
   //서버로 제목, 글내용, 습득or분실, 구 정보 보내기
   const sendContentToServer = async () => {
     const contentBox = {
+      user : user,
       title: title.current.value,
       content: content.current.value.replace(/(?:\r\n|\r|\n)/g, "<br/>"),
       district: district,
       gadaoda: gadaOda,
       completed : completed,
     };
-    console.log(contentBox)
-    await axios.put(`http://localhost:5001/posts/${edit.id}`, contentBox);
+
+    await axios.put(`http://13.209.4.223:8080/api/posts/${post.id}`, contentBox);
   };
 
   // 폼데이터로 보낼경우
   // const sendContentToServer = async () => {
   // const formData = new FormData();
   // formData.append("title", title.current.value);
+  // formData.append("user", user);
   // formData.append("content", content.current.value.replace(/(?:\r\n|\r|\n)/g, "<br/>"));
   // formData.append("district", distrct);
   // formData.append("gadaoda", gadaOda);
   // formData.append("completed", completed);
-  // await api.put("http://localhost:5001/posts/${edit}", formData);
+  // await api.put(`http://13.209.4.223:8000/api/posts/${post.id}`, formData);
   //}
 
   const OPTIONS = [

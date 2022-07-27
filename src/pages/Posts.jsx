@@ -56,11 +56,11 @@ const Post = () => {
     };
   }, []);
   //서버로 이미지 보내기
-  const sendImageToServer = async () => {
+  const sendImageToServer = async () => {  
     if (fileImage.image_file) {
       const formData = new FormData();
       formData.append("file", fileImage.image_file);
-      await axios.post("http://localhost:5001/posts", formData);
+      await axios.post(`http://13.209.4.223:8080/api/posts`, formData);
       alert("서버에 등록이 완료되었습니다!");
       setFileImage({
         image_file: "",
@@ -83,7 +83,7 @@ const Post = () => {
       gadaoda: gadaOda,
       completed: false,
     };
-    await axios.post("http://localhost:5001/posts", contentBox);
+    await axios.post(`http://13.209.4.223:8080/api/posts`, contentBox);
   };
 
   const OPTIONS = [

@@ -96,7 +96,6 @@ function App() {
         <Route path="/posts" element={<Post />} />
         <Route path="/posts/:postId/:edit" element={<EditPost/>} />
         <Route path="/api/posts/:postId" element={<Detail />} />
-        <Route path="/regist" element={<RegisterPage />} />
       </Routes>
     </div>
   );
