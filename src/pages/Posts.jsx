@@ -24,7 +24,9 @@ const Post = () => {
     image_file: "",
     preview_url: "https://memegenerator.net/img/instances/80735467.jpg",
   });
-
+  const stortoken = JSON.parse(localStorage.getItem("user"));
+  const [user, setUser] = useState("");
+  setUser(stortoken.nickname)
   //파일 저장
   const saveFileImage = (e) => {
     e.preventDefault();
@@ -74,6 +76,7 @@ const Post = () => {
   //서버로 제목, 글내용, 습득or분실, 구 정보 보내기
   const sendContentToServer = async () => {
     const contentBox = {
+      user : user,
       title: title.current.value,
       content: content.current.value,
       district: district,

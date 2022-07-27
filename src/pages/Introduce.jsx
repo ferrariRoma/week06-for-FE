@@ -1,5 +1,4 @@
 import React from "react";
-import styled from "styled-components";
 import {StyledIntroContainer} from "../components/styled";
 import Introcontent from "../components/Introcontent";
 
