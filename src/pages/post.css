@@ -1,167 +1,244 @@
 .btn {
-    font-size: 1rem;
-    padding: 0px 3px;
-    width: 6rem;
+  font-size: 1rem;
+  padding: 0px 3px;
+  width: 6rem;
 
-    border: 1px solid transparent;
-    background-color: transparent;
-    color:black;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    font-weight: bold;
-    position: relative;
-    transition: all 0.4s;
-    overflow: hidden;
+  border: 0.1rem solid black;
+  background-color: transparent;
+  color: black;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: bold;
+  position: relative;
+  transition: all 0.4s;
+  overflow: hidden;
 
-    margin-bottom: 1rem;
-    }
-    
-    .btn:focus {
-    outline: none;
-    }
-    
-    .btn::before {
-    content: "";
-    position: absolute;
-    height: 150%;
-    width: 100%;
-    background-color:#15203f;
-    top: 0;
-    left: -100%;
-    transition: all 0.4s;
-    z-index: -1;
-    }
-    
-    .btn:hover::before {
-    transform: translateX(100%);
-    }
-    
-    .btn:hover {
-    color: white;
-    }
+  margin-bottom: 1rem;
+}
 
-    .btn {
-        font-size: 1rem;
-        padding: 0px 3px;
-        width: 6rem;
-        
-        border: 1px solid transparent;
-        background-color: transparent;
-        color: #15203f;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-        font-weight: bold;
-        position: relative;
-        transition: all 0.4s;
-        overflow: hidden;
-    
-        margin-bottom: 1rem;
-        }
-        
-        .btn:focus {
-        outline: none;
-        }
-        
-        .btn::before {
-        content: "";
-        position: absolute;
-        height: 150%;
-        width: 100%;
-        background-color:#15203f;
-        top: 0;
-        left: -100%;
-        transition: all 0.4s;
-        z-index: -1;
-        }
-        
-        .btn:hover::before {
-        transform: translateX(100%);
-        }
-        
-        .btn:hover {
-        color: white;
-        }   
+.btn:focus {
+  outline: none;
+}
+
+.btn::before {
+  content: "";
+  position: absolute;
+  height: 150%;
+  width: 100%;
+  background-color: #15203f;
+  top: 0;
+  left: -100%;
+  transition: all 0.4s;
+  z-index: -1;
+}
+
+.btn:hover::before {
+  transform: translateX(100%);
+}
+
+.btn:hover {
+  color: white;
+}
+
+/* .btn {
+  font-size: 1rem;
+  padding: 0px 3px;
+  width: 6rem;
+
+  border: 0.2rem solid rgb(0, 0, 0);
+  background-color: transparent;
+  color: #15203f;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: bold;
+  position: relative;
+  transition: all 0.4s;
+  overflow: hidden;
+
+  margin-bottom: 1rem;
+} */
+
+.btn:focus {
+  outline: none;
+}
+
+.btn::before {
+  content: "";
+  position: absolute;
+  height: 150%;
+  width: 100%;
+  background-color: #15203f;
+  top: 0;
+  left: -100%;
+  transition: all 0.4s;
+  z-index: -1;
+}
+
+.btn:hover::before {
+  transform: translateX(100%);
+}
+
+.btn:hover {
+  color: white;
+}
 
 .btn2 {
-    font-size: 1rem;
-    padding: 0px 3px;
-    width: 6rem;
+  font-size: 1rem;
+  padding: 0px 3px;
+  width: 6rem;
 
-    border: 1px solid transparent;
-    background-color: transparent;
-    color: red;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    font-weight: bold;
-    position: relative;
-    transition: all 0.4s;
-    overflow: hidden;
+  border: 1px solid transparent;
+  background-color: transparent;
+  color: red;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: bold;
+  position: relative;
+  transition: all 0.4s;
+  overflow: hidden;
 
-    margin-bottom: 1rem;
-    }
-    
-    .btn2:focus {
-    outline: none;
-    }
-    
-    .btn2::before {
-    content: "";
-    position: absolute;
-    height: 150%;
-    width: 100%;
-    background-color:red;
-    top: 0;
-    left: -100%;
-    transition: all 0.4s;
-    z-index: -1;
-    }
-    
-    .btn2:hover::before {
-    transform: translateX(100%);
-    }
-    
-    .btn2:hover {
-    color: white;
-    }
+  margin-bottom: 1rem;
+}
 
-    .btn2 {
-        font-size: 1rem;
-        padding: 0px 3px;
-        width: 6rem;
-        
-        border: 1px solid transparent;
-        background-color: transparent;
-        color: black;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-        font-weight: bold;
-        position: relative;
-        transition: all 0.4s;
-        overflow: hidden;
-    
-        margin-bottom: 1rem;
-        }
-        
-        .btn2:focus {
-        outline: none;
-        }
-        
-        .btn2::before {
-        content: "";
-        position: absolute;
-        height: 150%;
-        width: 100%;
-        background-color:red;
-        top: 0;
-        left: -100%;
-        transition: all 0.4s;
-        z-index: -1;
-        }
-        
-        .btn2:hover::before {
-        transform: translateX(100%);
-        }
-        
-        .btn2:hover {
-        color: white;
-        }   
+.btn2:focus {
+  outline: none;
+}
+
+.btn2::before {
+  content: "";
+  position: absolute;
+  height: 150%;
+  width: 100%;
+  background-color: red;
+  top: 0;
+  left: -100%;
+  transition: all 0.4s;
+  z-index: -1;
+}
+
+.btn2:hover::before {
+  transform: translateX(100%);
+}
+
+.btn2:hover {
+  color: white;
+}
+
+.btn2 {
+  font-size: 1rem;
+  padding: 0px 3px;
+  width: 6rem;
+
+  border: 1px solid transparent;
+  background-color: transparent;
+  color: black;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: bold;
+  position: relative;
+  transition: all 0.4s;
+  overflow: hidden;
+
+  margin-bottom: 1rem;
+}
+
+.btn2:focus {
+  outline: none;
+}
+
+.btn2::before {
+  content: "";
+  position: absolute;
+  height: 150%;
+  width: 100%;
+  background-color: red;
+  top: 0;
+  left: -100%;
+  transition: all 0.4s;
+  z-index: -1;
+}
+
+.btn2:hover::before {
+  transform: translateX(100%);
+}
+
+.btn2:hover {
+  color: white;
+}
+
+/* 안동규 커스텀 */
+.originBtn {
+  font-size: 25px;
+  padding: 15px 30px;
+  border: 3px solid #15203f;
+  background-color: transparent;
+  color: black;
+  text-transform: uppercase;
+  letter-spacing: 5px;
+  font-weight: bold;
+  position: relative;
+  transition: all 0.4s;
+  overflow: hidden;
+}
+
+.originBtn:focus {
+  outline: none;
+}
+
+.originBtn::before {
+  content: "";
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-color: #15203f;
+  top: 100%;
+  left: 0;
+  transition: all 0.4s;
+  z-index: -1;
+}
+
+.originBtn:hover::before {
+  transform: translateY(-100%);
+}
+
+.originBtn:hover {
+  color: white;
+}
+
+.complete__btn__custom {
+  margin: 1rem 0;
+  width: 7rem;
+  height: 3rem;
+  text-align: center;
+  font-size: 1.3rem;
+  padding: 0.1rem;
+}
+.originBtn:active {
+  border: 3px solid white;
+}
+
+.left__btn::before {
+  top: 0;
+  left: -100%;
+}
+
+.left__btn:hover::before {
+  transform: translateX(100%);
+}
+
+.completed {
+  height: 3rem;
+  transform: none;
+  color: white;
+  background-color: #15203f;
+}
+
+.not__mine::before {
+  display: none;
+  transition: none;
+}
+.not__mine:hover,
+.not__mine:active {
+  transition: none;
+  color: black;
+}

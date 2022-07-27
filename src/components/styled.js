@@ -115,6 +115,7 @@ export const StyledPageLi = styled.li`
     background-color: rgba(38, 58, 108, 0.6);
   }
 `;
+
 export const StyledPostContainer = styled.div`
   margin: auto;
   margin-top: 8rem;
@@ -235,32 +236,6 @@ export const StyledPostInnerContainer = styled.div`
   }
 `;
 
-//   @media (min-width: 576px) and (max-width: 767px) {
-//     overflow: auto;
-//     width: 500px;
-//   }
-
-//   @media (min-width: 768px) and (max-width: 991px) {
-//     width: 700px;
-//     overflow: auto;
-//   }
-
-//   @media (min-width: 992px) and (max-width: 1199px) {
-//     width: 900px;
-//     overflow: auto;
-//   }
-
-//   @media (min-width: 1200px) {
-//     width: 1100px;
-//     overflow: auto;
-//   }
-// `;
-
-// export const StyledPostInnerContainer = styled.div`
-//   display: flex;
-//   flex-direction: column;
-// `;
-
 export const StyledPostBtn = styled.div`
   display: flex;
   justify-content: center;
@@ -311,6 +286,19 @@ export const StyledInputContent = styled.textarea`
   padding: 1rem;
 `;
 
+
+
+export const StyledIntroContainer = styled.div`
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  background-image: url("https://mblogthumb-phinf.pstatic.net/20150430_83/croxriver_1430364615321VA6xy_JPEG/DSC_3994.jpg?type=w800");
+  background-repeat: no-repeat;
+  background-position: top center;
+  background-size: cover;
+  background-attachment: fixed;
+  background-blend-mode : darken;
+
 export const CommentBox = styled.div`
   width: 50rem;
   margin: auto;
@@ -322,33 +310,36 @@ export const CommentBox = styled.div`
   padding: 1rem;
 
   .contentDetail {
+    margin-bottom: 1.5rem;
     display: flex;
     justify-content: space-between;
-    margin-bottom: 1.5rem;
+    width: 100%;
 
-    div:not(.contentDetail__timeStamp, .contentDetail__editBtn) {
+    .contentDetail__username__time {
       display: flex;
-      justify-content: center;
-      align-items: center;
+      justify-content: space-around;
+      margin-left: 2rem;
     }
 
     .contentDetail__username {
-      width: 30%;
       height: 3rem;
       font-size: 1.2rem;
       font-weight: 500;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-right: 1rem;
     }
 
     .contentDetail__timeStamp {
-      width: 25%;
-      margin-left: -16rem;
+      width: 10rem;
       font-size: 0.8rem;
       font-weight: 600;
       font-style: italic;
 
       display: flex;
       align-items: center;
-      justify-content: flex-start;
     }
     .contentDetail__editBtn {
       width: 30%;
@@ -360,6 +351,63 @@ export const CommentBox = styled.div`
       }
     }
   }
+  .comment__content {
+    font-size: 1.23rem;
+    text-align: start;
+    line-height: 1.6rem;
+    white-space: pre-wrap;
+    padding: 2rem;
+  }
+
+  @media screen and (max-width: 850px) {
+    width: 35rem;
+    .contentDetail {
+      flex-wrap: wrap;
+    }
+    .contentDetail__editBtn {
+      margin: auto;
+    }
+  }
+
+  @media screen and (max-width: 600px) {
+    width: 22rem;
+    .contentDetail__username__time {
+      flex-direction: column;
+      margin: 0;
+      margin-bottom: 2rem;
+      /* align-items: center;
+      justify-content: center;
+       */
+    }
+    .contentDetail {
+      flex-wrap: wrap;
+    }
+  }
+`;
+
+export const StyledPostCommentBox = styled.div`
+  margin: auto;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  width: 30rem;
+
+  display: flex;
+
+  textarea {
+    width: 80%;
+    height: 5rem;
+    resize: none;
+    border: 0.1rem solid rgba(0, 0, 0, 0.4);
+    border-radius: 1rem;
+    padding: 1rem;
+
+    margin-right: 1rem;
+    font-size: 1.4rem;
+  }
+  button {
+    width: 20%;
+  }
+
 `;
 
 export const Btnset = styled.div`

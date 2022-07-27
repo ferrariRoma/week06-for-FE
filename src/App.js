@@ -17,6 +17,7 @@ import { clearUser, loginUser } from "./redux/modules/userSlice";
 import EditPost from "./pages/EditPosts";
 import Introduce from "./pages/Introduce";
 
+
 function App() {
   // 페이지네이션 관련 state. 페이지네이션이 이루어지는 Home component에 props로 전달.
   const [posts, setPosts] = useState([]);
@@ -84,15 +85,18 @@ function App() {
       </StyledHeader>
       <Routes>
         <Route path="/" element={<Home posts={posts} loading={loading} />} />
+
         <Route
           path="/api/posts/:postId"
           element={<Detail loading={loading} setLoading={setLoading} />}
         />
         <Route path="/intro" element={<Introduce/>}/>
-        <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<RegisterPage />} />
+        <Route path="/login" element={<LoginPage />}/>
         <Route path="/posts" element={<Post />} />
-        <Route path="/posts/:postId/:editId" element={<EditPost />} />
+        <Route path="/posts/:postId/:edit" element={<EditPost/>} />
+        <Route path="/api/posts/:postId" element={<Detail />} />
+        <Route path="/regist" element={<RegisterPage />} />
       </Routes>
     </div>
   );
