@@ -27,8 +27,11 @@ const EditPost = (prop) => {
     image_file: "",
     preview_url: "https://memegenerator.net/img/instances/80735467.jpg",
   });
+  const stortoken = JSON.parse(localStorage.getItem("user"));
+  const [user, setUser] = useState("");
+  setUser(stortoken.nickname)
 
-  const edit = location.state
+  const post = location.state
   // setFileImage(result.fileImage.preview_url)
   // setGadaOda(result.gadaoda)
   // setDistrict(result.district)
@@ -38,11 +41,11 @@ const EditPost = (prop) => {
 
   useEffect(() => {
     const getPost = async () => {
-      const { data } = await axios.get( `http://localhost:5001/posts/${edit.id}`);
+      const { data } = await axios.get(`/api/posts/${post.id}`);
       return data;
     };
     const getImage = async () => {
-      const { data } = await axios.get(`http://localhost:5001/posts/${edit.id}`);
+      const { data } = await axios.get(`/api/posts/${post.id}`);
       return data;
     };
     getPost().then((result) => {
@@ -88,8 +91,8 @@ const EditPost = (prop) => {
     if (fileImage.image_file) {
       const formData = new FormData();
       formData.append("file", fileImage.image_file);
-      await axios.put(`http://localhost:5001/posts/${edit.id}`, formData);
-      alert("서버에 등록이 완료되었습니다!");
+      await axios.put(`/api/posts/${post.id}`, formData);
+      alert("게시글이 작성되었습니다.");
       setFileImage({
         image_file: "",
         preview_URL: "https://memegenerator.net/img/instances/80735467.jpg",
@@ -102,37 +105,40 @@ const EditPost = (prop) => {
   //서버로 제목, 글내용, 습득or분실, 구 정보 보내기
   const sendContentToServer = async () => {
     const contentBox = {
+      user : user,
       title: title.current.value,
       content: content.current.value.replace(/(?:\r\n|\r|\n)/g, "<br/>"),
       district: district,
       gadaoda: gadaOda,
       completed : completed,
     };
-    console.log(contentBox)
-    await axios.put(`http://localhost:5001/posts/${edit.id}`, contentBox);
+
+    await axios.put(`/api/posts/${post.id}`, contentBox);
   };
 
   // 폼데이터로 보낼경우
   // const sendContentToServer = async () => {
   // const formData = new FormData();
   // formData.append("title", title.current.value);
+  // formData.append("user", user);
   // formData.append("content", content.current.value.replace(/(?:\r\n|\r|\n)/g, "<br/>"));
   // formData.append("district", distrct);
   // formData.append("gadaoda", gadaOda);
   // formData.append("completed", completed);
-  // await api.put("http://localhost:5001/posts/${edit}", formData);
+  // await api.put(`http://13.209.4.223:8000/api/posts/${post.id}`, formData);
   //}
 
   const OPTIONS = [
-    { value: "susung", name: "수성구" },
-    { value: "east", name: "동구" },
-    { value: "west", name: "서구" },
-    { value: "south", name: "남구" },
-    { value: "north", name: "북구" },
-    { value: "dalseo", name: "달서구" },
-    { value: "dalsung", name: "달성군" },
-    { value: "middle", name: "중구" },
+    { value: "수성구", name: "수성구" },
+    { value: "동구", name: "동구" },
+    { value: "서구", name: "서구" },
+    { value: "남구", name: "남구" },
+    { value: "북구", name: "북구" },
+    { value: "달서구", name: "달서구" },
+    { value: "달성군", name: "달성군" },
+    { value: "중구", name: "중구" },
   ];
+
   const GADAODA = [
     { value: "gada", name: "분실" },
     { value: "oda", name: "습득" },

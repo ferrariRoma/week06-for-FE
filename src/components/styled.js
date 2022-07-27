@@ -9,6 +9,7 @@ export const StyledHeader = styled.div`
   color:white;
   top: 0;
   right: 0;
+  
   width: 100vw;
   height: 5rem;
   display: flex;
