@@ -41,11 +41,11 @@ const EditPost = (prop) => {
 
   useEffect(() => {
     const getPost = async () => {
-      const { data } = await axios.get(`http://13.209.4.223:8080/api/posts/${post.id}`);
+      const { data } = await axios.get(`/api/posts/${post.id}`);
       return data;
     };
     const getImage = async () => {
-      const { data } = await axios.get(`http://13.209.4.223:8080/api/posts/${post.id}`);
+      const { data } = await axios.get(`/api/posts/${post.id}`);
       return data;
     };
     getPost().then((result) => {
@@ -91,7 +91,7 @@ const EditPost = (prop) => {
     if (fileImage.image_file) {
       const formData = new FormData();
       formData.append("file", fileImage.image_file);
-      await axios.put(`http://13.209.4.223:8080/api/posts/${post.id}`, formData);
+      await axios.put(`/api/posts/${post.id}`, formData);
       alert("게시글이 작성되었습니다.");
       setFileImage({
         image_file: "",
@@ -113,7 +113,7 @@ const EditPost = (prop) => {
       completed : completed,
     };
 
-    await axios.put(`http://13.209.4.223:8080/api/posts/${post.id}`, contentBox);
+    await axios.put(`/api/posts/${post.id}`, contentBox);
   };
 
   // 폼데이터로 보낼경우

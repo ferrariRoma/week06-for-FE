@@ -12,6 +12,7 @@ import {
 } from "../components/styled";
 import axios from "axios";
 import "./post.css";
+import instance from "../axiosConfig";
 
 const Post = () => {
   const navigate = useNavigate();
@@ -60,7 +61,7 @@ const Post = () => {
     if (fileImage.image_file) {
       const formData = new FormData();
       formData.append("file", fileImage.image_file);
-      await axios.post(`http://13.209.4.223:8080/api/posts`, formData);
+      await axios.post(`/api/posts`, formData);
       alert("게시글이 작성되었습니다.");
       setFileImage({
         image_file: "",
@@ -83,7 +84,7 @@ const Post = () => {
       gadaoda: gadaOda,
       completed: false,
     };
-    await axios.post(`http://13.209.4.223:8080/api/posts`, contentBox);
+    await axios.post(`/api/posts`, contentBox);
   };
 
   const OPTIONS = [
