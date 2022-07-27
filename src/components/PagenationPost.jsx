@@ -9,7 +9,10 @@ const PagenationPost = memo(({ posts }) => {
         {posts.map((el) => {
           return (
             <>
-              <MainItemContainer post={el} key={el.id} />
+              <MainItemContainer
+                post={el}
+                key={Date.now() + Math.random() * 100}
+              />
             </>
           );
         })}
