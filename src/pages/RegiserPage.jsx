@@ -2,6 +2,7 @@ import React from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Row, SignupDiv, Btnset} from "../components/styled";
+import instance from "../axiosConfig";
 
 const RegisterPage = () => {
     const [email, setEmail] = React.useState("");
@@ -53,7 +54,7 @@ const RegisterPage = () => {
          nickname ,
         }
  
-         axios.post("http://localhost:5001/signup",data).then(response=>{
+        instance.post("/signup",data).then(response=>{
              console.log(response)
          }).catch(error=> {
           alert(error);
@@ -61,7 +62,7 @@ const RegisterPage = () => {
         }
 
       const checkEmail = () => {
-        axios.get(`http://localhost:5001/user/${email}`).then(response=>{
+        instance.get(`user/${email}`).then(response=>{
           //email 중복이 없는 경우
           setEmailCheckError(false);
         }).catch(error=> {
@@ -72,7 +73,7 @@ const RegisterPage = () => {
         }
 
       const checkNickname = () => {
-        axios.get(`http://localhost:5001/user/${nickname}`).then(response=>{
+        instance.get(`/user/${nickname}`).then(response=>{
           setNickCheckError(false);
         }).catch(error=> {
           alert(error);
