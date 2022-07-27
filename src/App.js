@@ -50,7 +50,10 @@ function App() {
     }
   });
 
-  useEffect(() => {
+  // 13.209.4.223
+  // 오다 주웠다 클릭
+  // 실험
+  /* useEffect(() => {
     // mount할 때 mockAPI에서 데이터 요청
     const fetchData = async () => {
       setLoading(true);
@@ -59,15 +62,47 @@ function App() {
       setLoading(false);
     };
     fetchData();
-  }, []);
+  }, []); */
+  const onClickOdaBtn = async () => {
+    setLoading(true);
+    try {
+      await instance.get("/api/posts", {
+        data: {
+          gadaoda: "oda",
+        },
+      });
+      setPosts(response.data);
+      setLoading(false);
+      return navigater("/");
+    } catch (err) {
+      return console.log(err);
+    }
+  };
+  // 가다 흘렸다 버튼 핸들러
+  const onClickGadaBtn = async () => {
+    setLoading(true);
+    try {
+      await instance.get("/api/posts", {
+        data: {
+          gadaoda: "gada",
+        },
+      });
+      setPosts(response.data);
+      setLoading(false);
+      return navigater("/");
+    } catch (err) {
+      return console.log(err);
+    }
+  };
+
   return (
     <div className="App">
       {loading && <LoadingSpinner />}
       <StyledHeader>
         <div>
           <div>로고</div>
-          <div>오다 주웠다</div>
-          <div>가다 흘렸다</div>
+          <div onClick={onClickOdaBtn}>오다 주웠다</div>
+          <div onClick={onClickGadaBtn}>가다 흘렸다</div>
         </div>
         {user_data === true ? (
           <>
@@ -101,5 +136,6 @@ function App() {
     </div>
   );
 }
+import instance from "./axiosConfig";
 
 export default App;

@@ -9,6 +9,7 @@ import Comment from "../components/Comment";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import "./post.css";
+import instance from "../axiosConfig";
 
 const Detail = () => {
   const navigate = useNavigate();
@@ -18,12 +19,15 @@ const Detail = () => {
   const checked__mine = useSelector((state) => state);
   const textareaRef = useRef("");
 
+  // mount하고서 게시글 정보 비동기 통신으로 받아오기
   useEffect(() => {
     const requestData = async () => {
-      const response = await axios.get(
-        `http://localhost:5001/api/${contentData.id}`
-      );
-      setCommentsInfo(response.data);
+      try {
+        const response = await instance.get(`/api/posts/${contentData.postId}`);
+        return setCommentsInfo(response.data);
+      } catch (err) {
+        console.log(err);
+      }
     };
     requestData();
   }, []);
@@ -33,8 +37,12 @@ const Detail = () => {
     // 토큰 가져와서 없으면 로그인 할 수 있도록 하기
     const stortoken = JSON.parse(localStorage.getItem("user"));
     if (stortoken !== null) {
-      await axios.delete(`http://localhost:5001/api/${contentData.id}`);
-      return navigate("/");
+      try {
+        await instance.delete(`/api/posts/${contentData.postId}`);
+        return navigate("/");
+      } catch (err) {
+        console.log(err);
+      }
     } else {
       alert("로그인을 해주세요");
       return navigate("/login");
@@ -58,13 +66,16 @@ const Detail = () => {
       });
 
       // DB에 수정 정보 전달
-      return await axios({
-        url: `http://localhost:5001/api/${contentData.id}`,
-        method: "PUT",
-        data: {
-          completed: requestValue,
-        },
-      });
+      try {
+        return await instance.put(
+          `/api/posts/${contentData.postId}/completed`,
+          {
+            completed: requestValue,
+          }
+        );
+      } catch (err) {
+        return console.log(err);
+      }
     } else {
       alert("로그인을 해주세요");
       return navigate("/login");
@@ -82,13 +93,17 @@ const Detail = () => {
       return alert("댓글을 입력하세요!");
     }
     const comment = { comment: textareaRef.current.value.trim() };
-    await axios.post(`http://localhost:5001/api/${contentData.id}`, comment);
-    const requestUpdateComment = async () => {
-      const response = await axios.get(`http://localhost:5001/api/IWusFld`);
-      setCommentsInfo(response.data);
-      console.log(response.data);
-    };
-    requestUpdateComment();
+    try {
+      await instance.post(`/api/posts/${contentData.postId}/comments`, comment);
+      // 등록 후 백엔드에서 최신 데이터 받아오기
+      const requestUpdateComment = async () => {
+        const response = await instance.get(`/api/posts/${contentData.postId}`);
+        return setCommentsInfo(response.data);
+      };
+      return requestUpdateComment();
+    } catch (err) {
+      return console.log(err);
+    }
   };
 
   return (
