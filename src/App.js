@@ -36,7 +36,8 @@ function App() {
   useEffect(() => {
     const stortoken = JSON.parse(localStorage.getItem("user"));
     if (user_data === false && stortoken !== null) {
-      instance.get("/user/userinfo", {
+      instance
+        .get("/user/userinfo", {
           headers: { Authorization: stortoken },
         })
         .then((response) => {
@@ -66,7 +67,7 @@ function App() {
   const onClickOdaBtn = async () => {
     setLoading(true);
     try {
-      await instance.get("/api/posts", {
+      const response = await instance.get("/api/posts", {
         data: {
           gadaoda: "oda",
         },
@@ -82,7 +83,7 @@ function App() {
   const onClickGadaBtn = async () => {
     setLoading(true);
     try {
-      await instance.get("/api/posts", {
+      const response = await instance.get("/api/posts", {
         data: {
           gadaoda: "gada",
         },
