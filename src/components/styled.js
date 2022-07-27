@@ -311,33 +311,36 @@ export const CommentBox = styled.div`
   padding: 1rem;
 
   .contentDetail {
+    margin-bottom: 1.5rem;
     display: flex;
     justify-content: space-between;
-    margin-bottom: 1.5rem;
+    width: 100%;
 
-    div:not(.contentDetail__timeStamp, .contentDetail__editBtn) {
+    .contentDetail__username__time {
       display: flex;
-      justify-content: center;
-      align-items: center;
+      justify-content: space-around;
+      margin-left: 2rem;
     }
 
     .contentDetail__username {
-      width: 30%;
       height: 3rem;
       font-size: 1.2rem;
       font-weight: 500;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-right: 1rem;
     }
 
     .contentDetail__timeStamp {
-      width: 25%;
-      margin-left: -16rem;
+      width: 10rem;
       font-size: 0.8rem;
       font-weight: 600;
       font-style: italic;
 
       display: flex;
       align-items: center;
-      justify-content: flex-start;
     }
     .contentDetail__editBtn {
       width: 30%;
@@ -348,5 +351,61 @@ export const CommentBox = styled.div`
         height: 2rem;
       }
     }
+  }
+  .comment__content {
+    font-size: 1.23rem;
+    text-align: start;
+    line-height: 1.6rem;
+    white-space: pre-wrap;
+    padding: 2rem;
+  }
+
+  @media screen and (max-width: 850px) {
+    width: 35rem;
+    .contentDetail {
+      flex-wrap: wrap;
+    }
+    .contentDetail__editBtn {
+      margin: auto;
+    }
+  }
+
+  @media screen and (max-width: 600px) {
+    width: 22rem;
+    .contentDetail__username__time {
+      flex-direction: column;
+      margin: 0;
+      margin-bottom: 2rem;
+      /* align-items: center;
+      justify-content: center;
+       */
+    }
+    .contentDetail {
+      flex-wrap: wrap;
+    }
+  }
+`;
+
+export const StyledPostCommentBox = styled.div`
+  margin: auto;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  width: 30rem;
+
+  display: flex;
+
+  textarea {
+    width: 80%;
+    height: 5rem;
+    resize: none;
+    border: 0.1rem solid rgba(0, 0, 0, 0.4);
+    border-radius: 1rem;
+    padding: 1rem;
+
+    margin-right: 1rem;
+    font-size: 1.4rem;
+  }
+  button {
+    width: 20%;
   }
 `;
