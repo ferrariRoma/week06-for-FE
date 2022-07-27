@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { loginUser } from "../redux/modules/userSlice";
 import { useDispatch } from "react-redux";
 import { LoginDiv, Row } from "../components/styled";
+import instance from "../axiosConfig";
 
 const LoginPage = () => {
   const [email, setEmail] = React.useState("");
@@ -17,9 +18,7 @@ const LoginPage = () => {
       password,
     };
 
-    axios
-      .post("http://localhost:5001/login", data)
-      .then((response) => {
+    instance.post("/login", data).then((response) => {
         localStorage.setItem("user", JSON.stringify(response.data));
         dispatch(
           loginUser({

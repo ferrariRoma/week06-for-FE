@@ -16,6 +16,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { clearUser, loginUser } from "./redux/modules/userSlice";
 import EditPost from "./pages/EditPosts";
 import Introduce from "./pages/Introduce";
+import instance from "./axiosConfig";
 
 function App() {
   // 페이지네이션 관련 state. 페이지네이션이 이루어지는 Home component에 props로 전달.
@@ -35,8 +36,7 @@ function App() {
   useEffect(() => {
     const stortoken = JSON.parse(localStorage.getItem("user"));
     if (user_data === false && stortoken !== null) {
-      axios
-        .get("http://localhost:5001//user/userinfo", {
+      instance.get("/user/userinfo", {
           headers: { Authorization: stortoken },
         })
         .then((response) => {
