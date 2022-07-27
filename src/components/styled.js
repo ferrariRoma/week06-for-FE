@@ -104,6 +104,7 @@ export const StyledPageLi = styled.li`
     background-color: rgba(38, 58, 108, 0.6);
   }
 `;
+
 export const StyledPostContainer = styled.div`
   margin: auto;
   margin-top: 8rem;
@@ -224,32 +225,6 @@ export const StyledPostInnerContainer = styled.div`
   }
 `;
 
-//   @media (min-width: 576px) and (max-width: 767px) {
-//     overflow: auto;
-//     width: 500px;
-//   }
-
-//   @media (min-width: 768px) and (max-width: 991px) {
-//     width: 700px;
-//     overflow: auto;
-//   }
-
-//   @media (min-width: 992px) and (max-width: 1199px) {
-//     width: 900px;
-//     overflow: auto;
-//   }
-
-//   @media (min-width: 1200px) {
-//     width: 1100px;
-//     overflow: auto;
-//   }
-// `;
-
-// export const StyledPostInnerContainer = styled.div`
-//   display: flex;
-//   flex-direction: column;
-// `;
-
 export const StyledPostBtn = styled.div`
   display: flex;
   justify-content: center;
@@ -299,6 +274,19 @@ export const StyledInputContent = styled.textarea`
   box-sizing: border-box;
   padding: 1rem;
 `;
+
+
+
+export const StyledIntroContainer = styled.div`
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  background-image: url("https://mblogthumb-phinf.pstatic.net/20150430_83/croxriver_1430364615321VA6xy_JPEG/DSC_3994.jpg?type=w800");
+  background-repeat: no-repeat;
+  background-position: top center;
+  background-size: cover;
+  background-attachment: fixed;
+  background-blend-mode : darken;
 
 export const CommentBox = styled.div`
   width: 50rem;
@@ -408,4 +396,5 @@ export const StyledPostCommentBox = styled.div`
   button {
     width: 20%;
   }
+
 `;
