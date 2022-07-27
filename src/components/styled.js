@@ -298,6 +298,7 @@ export const StyledIntroContainer = styled.div`
   background-size: cover;
   background-attachment: fixed;
   background-blend-mode : darken;
+`;
 
 export const CommentBox = styled.div`
   width: 50rem;
