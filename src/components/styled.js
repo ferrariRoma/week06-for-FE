@@ -409,10 +409,10 @@ button::before {
 content: "";
 position: absolute;
 height: 100%;
-width: 100%;
+width: 100.2%;
 background-color: #15203f;
 top: 0;
-left: -100%;
+left: -100.2%;
 transition: all 0.4s;
 z-index: -1;
 }
@@ -536,11 +536,11 @@ outline: none;
 button::before {
 content: "";
 position: absolute;
-height: 100%;
-width: 100%;
+height: 101%;
+width: 100.2%;
 background-color: #15203f;
 top: 0;
-left: -100%;
+left: -100.2%;
 transition: all 0.4s;
 z-index: -1;
 }

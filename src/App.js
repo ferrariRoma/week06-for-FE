@@ -70,7 +70,7 @@ function App() {
           <div>가다 흘렸다</div>
         </div>
         {user_data===true?( <>
-        <span>{user_nick} 종현님</span>
+        <span>{user_nick} 님</span>
         <div>
           <button onClick={logout}>로그아웃</button>
         </div>
