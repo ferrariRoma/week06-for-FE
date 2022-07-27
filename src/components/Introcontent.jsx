@@ -17,7 +17,8 @@ const Introcontent = () => {
           습득물을 등록하여 주인을 찾아주세요!
         </div>
         <div className="introduce">
-          이 프로젝트는 대구광역시 내에서 발생한 유실물을 등록하여 서로 공유할 수 있는 커뮤니티입니다.
+          이 프로젝트는 대구광역시 내에서 발생한 유실물을 등록하여 서로 공유할
+          수 있는 커뮤니티입니다.
         </div>
       </StyledIntroContent>
     </>
@@ -25,5 +26,3 @@ const Introcontent = () => {
 };
 
 export default Introcontent;
-
-
