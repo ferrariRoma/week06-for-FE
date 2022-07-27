@@ -24,7 +24,9 @@ const Post = () => {
     image_file: "",
     preview_url: "https://memegenerator.net/img/instances/80735467.jpg",
   });
-
+  const stortoken = JSON.parse(localStorage.getItem("user"));
+  const [user, setUser] = useState("");
+  setUser(stortoken.nickname);
   //파일 저장
   const saveFileImage = (e) => {
     e.preventDefault();
@@ -74,6 +76,7 @@ const Post = () => {
   //서버로 제목, 글내용, 습득or분실, 구 정보 보내기
   const sendContentToServer = async () => {
     const contentBox = {
+      user: user,
       title: title.current.value,
       content: content.current.value,
       district: district,
@@ -84,18 +87,17 @@ const Post = () => {
   };
 
   const OPTIONS = [
-    { value: "susung", name: "수성구" },
-    { value: "east", name: "동구" },
-    { value: "west", name: "서구" },
-    { value: "south", name: "남구" },
-    { value: "north", name: "북구" },
-    { value: "dalseo", name: "달서구" },
-    { value: "dalsung", name: "달성군" },
-    { value: "middle", name: "중구" },
+    { value: "수성구", name: "수성구" },
+    { value: "동구", name: "동구" },
+    { value: "서구", name: "서구" },
+    { value: "남구", name: "남구" },
+    { value: "북구", name: "북구" },
+    { value: "달서구", name: "달서구" },
+    { value: "달성군", name: "달성군" },
+    { value: "중구", name: "중구" },
   ];
 
   const GADAODA = [
-    //0 분실 : 1 습득
     { value: "gada", name: "분실" },
     { value: "oda", name: "습득" },
   ];
