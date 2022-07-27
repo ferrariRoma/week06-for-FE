@@ -1,10 +1,10 @@
 import React from "react";
-import { StyledIntroContainer } from "./styled";
+import { StyledIntroContent } from "./styled";
 
 const Introcontent = () => {
   return (
     <>
-      <StyledIntroContainer>
+      <StyledIntroContent>
         <div className="title">FindById!</div>
         <div className="introduce">
           물건을 잃어버렸나요?
@@ -20,7 +20,7 @@ const Introcontent = () => {
           이 프로젝트는 대구광역시 내에서 발생한 유실물을 등록하여 서로 공유할
           수 있는 커뮤니티입니다.
         </div>
-      </StyledIntroContainer>
+      </StyledIntroContent>
     </>
   );
 };
