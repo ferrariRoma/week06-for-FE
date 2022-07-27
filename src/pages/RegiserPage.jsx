@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { Row, SignupDiv} from "../components/styled";
+import { Row, SignupDiv, Btnset} from "../components/styled";
 
 const RegisterPage = () => {
     const [email, setEmail] = React.useState("");
@@ -98,27 +98,30 @@ const RegisterPage = () => {
              <h2>Signup</h2>
               <Row>
                <label> 아이디</label>
-               <input type="text" value={email} placeholder="Email" onChange={onEmailHandler} required />
+               <input type="text" value={email} onChange={onEmailHandler} required />
                <button onClick={checkEmail}>중복체크</button>
               </Row>
-              {emailError && <div class="invalid-input"> 아이디는 이메일 형식으로 입력해주세요 </div>}
+              <span>{emailError && <div class="invalid-input"> 아이디는 이메일로 입력해주세요. </div>}</span>
               <Row>
                <label> 닉네임</label>
-               <input type="text" value={nickname} placeholder="Nickname" onChange={onNicNameHandler} required/>
+               <input type="text" value={nickname}  onChange={onNicNameHandler} required/>
                <button onClick={checkNickname}>중복체크</button>
               </Row>
               <Row>
                <label> 비밀번호</label>
-               <input type="password" value={password} placeholder="Password" onChange={onPasswordHandler} required/>
+               <input type="password" value={password}  onChange={onPasswordHandler} required/>
               </Row>
-              {passwordError && <div class="invalid-input"> 비밀번호는 문자와 숫자를 포함한 최소 8자리로 구성되어야 합니다 </div>}
+              <span>{passwordError && <div class="invalid-input"> 비밀번호는 문자와 숫자를 포함한 최소 8자리로 입력해주세요.</div>}</span>
               <Row>
                <label> 비밀번호 확인</label>
-                <input type="password" value={confirmPassword} placeholder="ConfirmPassword" onChange={onConfirmPasswordHandler} required/>
+                <input type="password" value={confirmPassword} onChange={onConfirmPasswordHandler} required/>
               </Row> 
-              {confirmPasswordError && <div class="invalid-input">비밀번호가 일치하지 않습니다</div>} 
+              <span>{confirmPasswordError && <div class="invalid-input">비밀번호를 확인해주세요.</div>}</span> 
               <br/>
-                <button type="submit" onClick={registAxios}>join F.B.I</button>
+               <Btnset>
+                <button type="submit" onClick={registAxios}>Join</button>
+                <button onClick={()=>navigater('/login')}>취소</button>
+               </Btnset>
             </form>
         </SignupDiv>
        

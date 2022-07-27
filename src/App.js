@@ -15,6 +15,7 @@ import { useNavigate } from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux"
 import { clearUser, loginUser } from "./redux/modules/userSlice";
 import EditPost from "./pages/EditPosts";
+import Introduce from "./pages/Introduce";
 
 function App() {
   // 페이지네이션 관련 state. 페이지네이션이 이루어지는 Home component에 props로 전달.
@@ -69,10 +70,7 @@ function App() {
           <div>가다 흘렸다</div>
         </div>
         {user_data===true?( <>
-        <div onClick={()=>alert("마이페이지")}>
-          <FontAwesomeIcon icon={faUser} style={{ fontSize: "3rem" }} />
-        </div>
-        <div>{user_nick} 님</div>
+        <span>{user_nick} 종현님</span>
         <div>
           <button onClick={logout}>로그아웃</button>
         </div>
@@ -90,8 +88,9 @@ function App() {
           path="/api/posts/:postId"
           element={<Detail loading={loading} setLoading={setLoading} />}
         />
+        <Route path="/intro" element={<Introduce/>}/>
         <Route path="/login" element={<LoginPage />} />
-        <Route path="/regist" element={<RegisterPage />} />
+        <Route path="/signup" element={<RegisterPage />} />
         <Route path="/posts" element={<Post />} />
         <Route path="/posts/:postId/:editId" element={<EditPost />} />
       </Routes>

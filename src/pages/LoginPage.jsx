@@ -71,12 +71,10 @@ const LoginPage = () => {
                 onChange={onPasswordHandler}
                 /> 
             </Row>
-            
             <br/>
             <button type="submit" onClick={loginAxios}>로그인하기</button>
+            <button onClick={()=>navigater("/signup")}> 회원가입</button> 
         </form>
-            <br/>
-            <button onClick={()=>navigater("/signup")}> 회원가입</button>
     </LoginDiv>
    )
 }

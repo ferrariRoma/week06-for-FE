@@ -5,7 +5,6 @@ import styled from "styled-components";
 export const StyledHeader = styled.div`
   position: fixed;
   z-index: 1;
-  background-color: white;
   background-color: #15203f;
   color:white;
   top: 0;
@@ -13,12 +12,8 @@ export const StyledHeader = styled.div`
   width: 100vw;
   height: 5rem;
   display: flex;
-  background-color: #15203f;
-  color: white;
   justify-content: space-between;
   padding: 0 5rem;
-  background-color: #15203f;
-  color: white;
 
   @media screen and (max-width: 600px) {
     padding: 0 1rem;
@@ -27,11 +22,17 @@ export const StyledHeader = styled.div`
     display: flex;
     justify-content: space-around;
     align-items: center;
+    font-size: 1rem;
+    margin: 1rem;
     div {
-      margin-left: 1rem;
+      margin-left: 5rem;
       display: flex;
       align-items: center;
     }
+  }
+  span {
+    display: flex;
+    align-items: center;
   }
   button{
     color:white;
@@ -361,82 +362,43 @@ export const CommentBox = styled.div`
   }
 `;
 
-export const Row = styled.div`
+export const Btnset = styled.div`
 display: flex;
-align-items: center;
-margin-top: 15px;
-border-bottom: 1px solid #555;
-label {
-  display: inline-block;
-  width: 100px;
-}
-input {
-  padding: 10px;
-  border: none;
-  outline: none;
-  font-size: 16px;
-  &::placeholder {
-    padding: 0 5px;
-    font-style: italic;
-    text-align: right;
-  }
-}
-`;
-
-export const SignupDiv = styled.div`
-border: 0.1rem solid rgba(0, 0, 0, 0.2);
-border-radius: 0.1rem;
-box-shadow: rgba(0, 0, 0, 0.3) 0.4rem 0.4rem 4rem 0rem;
-display: flex;
-flex-direction: column;
+flex-direction: row;
 align-items: center;
 justify-content: center;
-margin: 10rem;
-padding: 2rem;
+margin-top: 1.8rem;
 
-h2 {
-  margin-bottom: 1rem;
-  font-size: 2rem;
-}
-button{
-  font-size: 1rem;
-}
-input{
-  width: 100%
-}
-label{
-  font-size: 0.8rem;
-}
-`;
 
-export const LoginDiv = styled.div`
-border: 0.1rem solid rgba(0, 0, 0, 0.2);
-border-radius: 0.1rem;
-box-shadow: rgba(0, 0, 0, 0.3) 0.4rem 0.4rem 4rem 0rem;
-display: flex;
-flex-direction: column;
-align-items: center;
-justify-content: center;
-margin: 10rem;
-padding: 2rem;
-h2 {
-  margin-bottom: 1rem;
-  font-size: 2rem;
-}
+/* button {
+  border-radius: 0.3rem;
+  background-color: transparent;
+  margin-right: 1.5rem;
+  margin-left: 1.5rem;
+  color:  #15203f;
+  font-size: 1.3rem;
+  padding: 0.5rem;
+  height: 2.5rem;
+  width: 5rem;
+} */
+
 
 button {
-font-size: 25px;
-padding: 15px 30px;
-border: 3px solid #15203f;
-background-color: transparent;
-color: #15203f;
-text-transform: uppercase;
-letter-spacing: 5px;
-font-weight: bold;
-position: relative;
-transition: all 0.4s;
-overflow: hidden;
-border-radius: 10px;
+  font-size: 1.3rem;
+  text-align: center;
+  margin-right: 1.5rem;
+  margin-left: 1.5rem;
+  padding: 0.7rem;
+  border: 3px solid #15203f;
+  background-color: transparent;
+  color: #15203f;
+  text-transform: uppercase;
+  letter-spacing: 5px;
+  font-weight: bold;
+  position: relative;
+  transition: all 0.4s;
+  overflow: hidden;
+  border-radius: 0.3rem;
 }
 
 button:focus {
@@ -460,10 +422,136 @@ transform: translateX(100%);
 }
 
 button:hover {
-color: #3c3e70;
+color: white;
 }
 
+input{
+  width: 100%
+}
 
+`
+
+export const Row = styled.div`
+display: flex;
+align-items: center;
+margin-top: 15px;
+border-bottom: 1px solid #555;
+label {
+  display: inline-block;
+  width: 100px;
+}
+input {
+  padding: 10px;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  &::placeholder {
+    padding: 0 5px;
+    font-style: italic;
+    text-align: right;
+  }
+}
+button{
+  font-size: 0.7rem;
+  width: 5rem;
+  height: 2rem;
+  background-color: transparent;
+  border-radius: 0.3rem;
+  color:  #15203f;
+}
+`;
+
+export const SignupDiv = styled.div`
+border: 0.1rem solid rgba(0, 0, 0, 0.2);
+border-radius: 1rem;
+box-shadow: rgba(0, 0, 0, 0.3) 0.4rem 0.4rem 4rem 0rem;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+margin: 10rem;
+padding: 3rem;
+
+h2 {
+  margin-bottom: 1rem;
+  font-size: 2rem;
+  color:  #15203f;
+}
+
+input{
+  width: 100%
+}
+label{
+  font-size: 0.8rem;
+  text-align: left;
+}
+span{
+  font-size: 0.8rem;
+  color:  gray;
+  margin-top: 0.5rem;
+  text-align: left;
+  margin-left: 0.2rem;
+}
+`;
+
+
+
+
+export const LoginDiv = styled.div`
+border: 0.1rem solid rgba(0, 0, 0, 0.2);
+border-radius: 1rem;
+box-shadow: rgba(0, 0, 0, 0.3) 0.4rem 0.4rem 4rem 0rem;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+margin: 10rem;
+padding: 3rem;
+h2 {
+  margin-top: 2rem;
+  margin-bottom: 3rem;
+  font-size: 2rem;
+}
+
+button {
+font-size: 1rem;
+padding: 1rem 1.5rem;
+border: 3px solid #15203f;
+background-color: transparent;
+color: #15203f;
+text-transform: uppercase;
+letter-spacing: 5px;
+font-weight: bold;
+position: relative;
+transition: all 0.4s;
+overflow: hidden;
+border-radius: 10px;
+margin: 3rem 0.8rem;
+}
+
+button:focus {
+outline: none;
+}
+
+button::before {
+content: "";
+position: absolute;
+height: 100%;
+width: 100%;
+background-color: #15203f;
+top: 0;
+left: -100%;
+transition: all 0.4s;
+z-index: -1;
+}
+
+button:hover::before {
+transform: translateX(100%);
+}
+
+button:hover {
+color: white;
+}
 
 input{
   width: 100%
