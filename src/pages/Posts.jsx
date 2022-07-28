@@ -10,7 +10,6 @@ import {
   StyledInputContent,
   StyledInputTitle,
 } from "../components/styled";
-import axios from "axios";
 import "./post.css";
 import instance from "../axiosConfig";
 
@@ -20,14 +19,17 @@ const Post = () => {
   const content = useRef();
   const [gadaOda, setGadaOda] = useState("");
   const [district, setDistrict] = useState("");
+  const [user, setUser] = useState("");
   let inputRef;
   const [fileImage, setFileImage] = useState({
     image_file: "",
     preview_url: "https://memegenerator.net/img/instances/80735467.jpg",
   });
-  const stortoken = JSON.parse(localStorage.getItem("user"));
-  const [user, setUser] = useState("");
-  setUser(stortoken.nickname);
+  useEffect(() => {
+    const stortoken = JSON.parse(localStorage.getItem("user"));
+    setUser(stortoken?.nickname);
+  }, []);
+
   //파일 저장
   const saveFileImage = (e) => {
     e.preventDefault();
@@ -57,11 +59,11 @@ const Post = () => {
     };
   }, []);
   //서버로 이미지 보내기
-  const sendImageToServer = async () => {  
+  const sendImageToServer = async () => {
     if (fileImage.image_file) {
       const formData = new FormData();
       formData.append("file", fileImage.image_file);
-      await axios.post(`/api/posts`, formData);
+      await instance.post(`/api/posts`, formData);
       alert("게시글이 작성되었습니다.");
       setFileImage({
         image_file: "",
@@ -84,7 +86,7 @@ const Post = () => {
       gadaoda: gadaOda,
       completed: false,
     };
-    await axios.post(`/api/posts`, contentBox);
+    await instance.post(`/api/posts`, contentBox);
   };
 
   const OPTIONS = [

@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { memo, useRef, useState } from "react";
 import { CommentBox, StyledPostCommentBox } from "./styled";
 import { useSelector } from "react-redux";
 import axios from "axios";
@@ -6,7 +6,7 @@ import "../pages/post.css";
 import { useNavigate } from "react-router-dom";
 import instance from "../axiosConfig";
 
-const Comment = ({ info, setCommentsInfo }) => {
+const Comment = memo(({ info, setCommentsInfo }) => {
   const { commentId } = info;
   const [editState, setEditState] = useState(false);
   const textareaRef = useRef(info.comment);
@@ -165,6 +165,6 @@ const Comment = ({ info, setCommentsInfo }) => {
       </CommentBox>
     </>
   );
-};
+});
 
 export default Comment;
