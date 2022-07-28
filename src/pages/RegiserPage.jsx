@@ -46,21 +46,21 @@ const RegisterPage = () => {
 
       const registAxios = () => {
         const data = {
-        email ,
-        password ,
-        nickname ,
+         email ,
+         password ,
+         nickname ,
         }
-        
+ 
         return instance.post("/user/signup", data).then((response) => {
-        console.log(response);
-        alert("가입완료");
-        navigater("/login");
-        })
-        .catch((error) => {
-        console.log(error);
-        alert(error);
-        });
-        }
+            console.log(response);
+            alert("가입완료");
+            navigater("/login");
+          })
+            .catch((error) => {
+          console.log(error);
+            alert(error);
+          });
+
 
       const checkEmail = () => {
         instance.post(`/user/email/${email}`).then(response=>{
@@ -81,35 +81,34 @@ const RegisterPage = () => {
          })      
         }
 
-      // const onSubmitHandler = (event) => {
-      //   event.preventDefault();
-      //   if (emailError===false&& confirmPasswordError===false&&passwordError===false&&emailCheckError===false&&nickCheckError===false)
-      //     {alert("가입완료")
-      //     navigater("/login")}
-      //     else 
-      //     alert("다시 확인해주세요.")
-      // };
+     
+      const onSubmitHandler = (event) => {
+        event.preventDefault();
+        // if (emailError===false&& confirmPasswordError===false&&passwordError===false&&emailCheckError===false&&nickCheckError===false)
+        if (emailError===false&& confirmPasswordError===false&&passwordError===false)
+
+          {alert("가입완료")
+          navigater("/login")}
+          else 
+          alert("다시 확인해주세요.")
+      };
     
 
     return (
         <SignupDiv>
             <form 
-            // onSubmit={onSubmitHandler}
+            onSubmit={onSubmitHandler}
             style={{display:"flex", flexDirection:"column"}}>
              <h2>Signup</h2>
               <Row>
                <label> 아이디</label>
                <input type="text" value={email} onChange={onEmailHandler} required />
-
-
-               <button disabled={emailError===true ? true : false} onClick={checkEmail}>중복체크</button>
-
               </Row>
               <span>{emailError && <div className="invalid-input"> 아이디는 이메일로 입력해주세요. </div>}</span>
               <Row>
                <label> 닉네임</label>
                <input type="text" value={nickname}  onChange={onNicNameHandler} required/>
-               <button onClick={checkNickname}>중복체크</button>
+               {/* <button onClick={checkNickname}>중복체크</button> */}
               </Row>
               <Row>
                <label> 비밀번호</label>
@@ -133,5 +132,4 @@ const RegisterPage = () => {
 
 
 export default RegisterPage;
-
 

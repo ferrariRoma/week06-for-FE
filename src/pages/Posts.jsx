@@ -26,10 +26,11 @@ const Post = () => {
     preview_url: "https://memegenerator.net/img/instances/80735467.jpg",
   });
 
-  // useEffect(()=>{
-  //   const stortoken = JSON.parse(localStorage.getItem("user"));
-  //   setUser(stortoken.nickname);
-  // },[]);
+  useEffect(()=>{
+    const stortoken = JSON.parse(sessionStorage.getItem("user"));
+    setUser(stortoken.nickname);
+  },[]);
+
 
   //파일 저장
   const saveFileImage = (e) => {
