@@ -10,7 +10,7 @@ import Home from "./pages/Home";
 import Detail from "./pages/Detail";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegiserPage";
-import Post from "./pages/Posts";
+import Posts from "./pages/Posts";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { clearUser, loginUser } from "./redux/modules/userSlice";
@@ -124,7 +124,7 @@ function App() {
         <Route path="/intro" element={<Introduce />} />
         <Route path="/signup" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />
-        <Route path="/posts" element={<Post />} />
+        <Route path="/posts" element={<Posts />} />
         <Route path="/posts/:postId/:edit" element={<EditPost />} />
         <Route path="/api/posts/:postId" element={<Detail />} />
       </Routes>
