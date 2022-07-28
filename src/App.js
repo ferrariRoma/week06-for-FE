@@ -29,27 +29,25 @@ function App() {
 
   const logout = () => {
     dispatch(clearUser());
-    localStorage.removeItem("user");
+    sessionStorage.removeItem("user");
     navigater("/");
   };
 
-  // useEffect(() => {
-  //   const stortoken = JSON.parse(localStorage.getItem("user"));
-  //   if (user_data === false && stortoken !== null) {
-  //     instance
-  //       .get("/user/userinfo", {
-  //         headers: { Authorization: stortoken },
-  //       })
-  //       .then((response) => {
-  //         dispatch(
-  //           loginUser({
-  //             email: response.data.email,
-  //             nickname: response.data.nickname,
-  //           })
-  //         );
-  //       });
-  //   }
-  // });
+  useEffect(()=>{
+    const storcookie = JSON.parse(sessionStorage.getItem("user"))
+    if (user_data===false && storcookie !==null) {
+      console.log(storcookie.email, storcookie.nickname)
+      dispatch(loginUser(
+        {
+           email:storcookie.email,
+           nickname: storcookie.nickname,
+        }
+       ))
+    }
+
+  })
+
+
 
   // 13.209.4.223
   // 오다 주웠다 클릭
@@ -65,9 +63,9 @@ function App() {
     fetchData();
   }, []); */
 
-  // useEffect(()=> {
-  //   onClickOdaBtn();
-  // },[]);
+
+
+
 
   const onClickOdaBtn = async () => {
     setLoading(true);
