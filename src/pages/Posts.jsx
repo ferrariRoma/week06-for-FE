@@ -19,7 +19,7 @@ const Post = () => {
   const content = useRef();
   const [gadaOda, setGadaOda] = useState("");
   const [district, setDistrict] = useState("");
-  // const [user, setUser] = useState("");
+  const [user, setUser] = useState("");
   let inputRef;
   const [fileImage, setFileImage] = useState({
     image_file: "",

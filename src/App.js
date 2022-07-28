@@ -48,57 +48,56 @@ function App() {
   // 13.209.4.223
   // 오다 주웠다 클릭
   // 실험
-  /* useEffect(() => {
+  useEffect(() => {
     // mount할 때 mockAPI에서 데이터 요청
     const fetchData = async () => {
       setLoading(true);
-      const response = await axios.get("http://localhost:5001/posts");
+      const response = await instance.get("/posts");
       setPosts(response.data);
       setLoading(false);
     };
     fetchData();
-  }, []); */
+  }, []);
 
-  const onClickOdaBtn = async () => {
-    setLoading(true);
-    try {
-      const response = await instance.get("/api/posts", {
-        data: {
-          gadaoda: "oda",
-        },
-      });
-      setPosts(response.data);
-      setLoading(false);
-      return navigater("/");
-    } catch (err) {
-      return console.log(err);
-    }
-  };
-  // 가다 흘렸다 버튼 핸들러
-  const onClickGadaBtn = async () => {
-    setLoading(true);
-    try {
-      const response = await instance.get("/api/posts", {
-        data: {
-          gadaoda: "gada",
-        },
-      });
-      setPosts(response.data);
-      setLoading(false);
-      return navigater("/");
-    } catch (err) {
-      return console.log(err);
-    }
-  };
+  // const onClickOdaBtn = async () => {
+  //   setLoading(true);
+  //   try {
+  //     const response = await instance.get("/api/posts", {
+  //       data: {
+  //         gadaoda: "oda",
+  //       },
+  //     });
+  //     setPosts(response.data);
+  //     setLoading(false);
+  //     return navigater("/");
+  //   } catch (err) {
+  //     return console.log(err);
+  //   }
+  // };
+  // // 가다 흘렸다 버튼 핸들러
+  // const onClickGadaBtn = async () => {
+  //   setLoading(true);
+  //   try {
+  //     const response = await instance.get("/api/posts", {
+  //       data: {
+  //         gadaoda: "gada",
+  //       },
+  //     });
+  //     setPosts(response.data);
+  //     setLoading(false);
+  //     return navigater("/");
+  //   } catch (err) {
+  //     return console.log(err);
+  //   }
+  // };
 
   return (
     <div className="App">
       {loading && <LoadingSpinner />}
       <StyledHeader>
         <div>
-          <div>로고</div>
-          <div onClick={onClickOdaBtn}>오다 주웠다</div>
-          <div onClick={onClickGadaBtn}>가다 흘렸다</div>
+          <div onClick={() => navigater("/intro")}>로고</div>
+          <div onClick={() => navigater("/posts")}>게시글 작성</div>
         </div>
         {user_data === true ? (
           <>
