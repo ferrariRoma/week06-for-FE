@@ -292,7 +292,7 @@ export const StyledInputContent = styled.textarea`
 export const StyledIntroContainer = styled.div`
   display: flex;
   width: 100vw;
-  height: 100vh;
+  height: 130vh;
   background-image: url("https://mblogthumb-phinf.pstatic.net/20150430_83/croxriver_1430364615321VA6xy_JPEG/DSC_3994.jpg?type=w800");
   background-repeat: no-repeat;
   background-position: top center;

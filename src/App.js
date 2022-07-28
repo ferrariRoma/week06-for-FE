@@ -106,7 +106,7 @@ function App() {
       {loading && <LoadingSpinner />}
       <StyledHeader>
         <div>
-          <div>로고</div>
+          <div onClick={()=> navigater("/intro")}>로고</div>
           <div onClick={onClickOdaBtn}>오다 주웠다</div>
           <div onClick={onClickGadaBtn}>가다 흘렸다</div>
         </div>
