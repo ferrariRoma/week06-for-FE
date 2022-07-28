@@ -19,14 +19,15 @@ const Post = () => {
   const content = useRef();
   const [gadaOda, setGadaOda] = useState("");
   const [district, setDistrict] = useState("");
-  const [user, setUser] = useState("");
+  // const [user, setUser] = useState("");
   let inputRef;
   const [fileImage, setFileImage] = useState({
     image_file: "",
     preview_url: "https://memegenerator.net/img/instances/80735467.jpg",
   });
+
   useEffect(() => {
-    const stortoken = JSON.parse(localStorage.getItem("user"));
+    const stortoken = JSON.parse(sessionStorage.getItem("user"));
     setUser(stortoken.nickname);
   }, []);
 
@@ -79,7 +80,7 @@ const Post = () => {
   //서버로 제목, 글내용, 습득or분실, 구 정보 보내기
   const sendContentToServer = async () => {
     const contentBox = {
-      user: user,
+      // user: user,
       title: title.current.value,
       content: content.current.value,
       district: district,
@@ -87,7 +88,21 @@ const Post = () => {
       completed: false,
     };
     await instance.post(`/api/posts`, contentBox);
+    navigate("/");
   };
+
+  // const sendContentToServer = async () => {
+  //   const formData = new FormData();
+  //   formData.append("title", title.current.value);
+  //   formData.append("content", content.current.value);
+  //   formData.append(" district", district);
+  //   formData.append("gadaoda", gadaOda);
+  //   formData.append("completed", false);
+  //   await instance.post(`/api/posts`, formData);
+  //   console.log(formData);
+  //   window.alert("등록이 완료되었습니다");
+  //   navigate("/");
+  // };
 
   const OPTIONS = [
     { value: "수성구", name: "수성구" },
@@ -193,7 +208,7 @@ const Post = () => {
             <button
               className="btn"
               onClick={() => {
-                sendImageToServer();
+                // sendImageToServer();
                 sendContentToServer();
               }}
             >

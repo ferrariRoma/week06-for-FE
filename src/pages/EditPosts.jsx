@@ -10,8 +10,8 @@ import {
   StyledInputContent,
   StyledInputTitle,
 } from "../components/styled";
-import axios from "axios";
 import "./post.css";
+import instance from "../axiosConfig";
 
 const EditPost = (prop) => {
   
@@ -28,7 +28,7 @@ const EditPost = (prop) => {
     preview_url: "https://memegenerator.net/img/instances/80735467.jpg",
   });
   const stortoken = JSON.parse(localStorage.getItem("user"));
-  const [user, setUser] = useState("");
+  const [user, setUser] = useState("hello");
   setUser(stortoken.nickname)
 
   const post = location.state
@@ -41,11 +41,11 @@ const EditPost = (prop) => {
 
   useEffect(() => {
     const getPost = async () => {
-      const { data } = await axios.get(`/api/posts/${post.id}`);
+      const { data } = await instance.get(`/api/posts/${post.id}`);
       return data;
     };
     const getImage = async () => {
-      const { data } = await axios.get(`/api/posts/${post.id}`);
+      const { data } = await instance.get(`/api/posts/${post.id}`);
       return data;
     };
     getPost().then((result) => {
@@ -91,7 +91,7 @@ const EditPost = (prop) => {
     if (fileImage.image_file) {
       const formData = new FormData();
       formData.append("file", fileImage.image_file);
-      await axios.put(`/api/posts/${post.id}`, formData);
+      await instance.put(`/api/posts/${post.id}`, formData);
       alert("게시글이 작성되었습니다.");
       setFileImage({
         image_file: "",
@@ -113,7 +113,7 @@ const EditPost = (prop) => {
       completed : completed,
     };
 
-    await axios.put(`/api/posts/${post.id}`, contentBox);
+    await instance.put(`/api/posts/${post.id}`, contentBox);
   };
 
   // 폼데이터로 보낼경우

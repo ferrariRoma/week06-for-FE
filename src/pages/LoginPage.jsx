@@ -11,15 +11,27 @@ const LoginPage = () => {
   const navigater = useNavigate();
   const dispatch = useDispatch();
 
+
+
   const loginAxios = () => {
     const data = {
-      email,
-      password,
-    };
+     email ,
+     password ,
+    }
+ 
+  instance.get("/login/true",data).then(response=>{
+    sessionStorage.setItem("user", JSON.stringify(response.data.cookie))
+    dispatch(loginUser(
+     {
+      mail: response.data.cookie.email,
+      nickname: response.data.cookie.nickname,
+   }
+  ))
+  navigater("/");
+ })  
+}
 
-    instance
-      .post("/user/login", data)
-      .then((response) => {
+    instance.post("/login", data).then((response) => {
         localStorage.setItem("user", JSON.stringify(response.data));
         dispatch(
           loginUser({
