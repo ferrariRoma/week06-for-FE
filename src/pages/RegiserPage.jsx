@@ -1,5 +1,4 @@
 import React from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Row, SignupDiv, Btnset} from "../components/styled";
 import instance from "../axiosConfig";
@@ -48,32 +47,47 @@ const RegisterPage = () => {
       }  
 
       const registAxios = () => {
+        if (
+          emailError === false &&
+          confirmPasswordError === false &&
+          passwordError === false &&
+          emailCheckError === false &&
+          nickCheckError === false
+        ) {
         const data = {
-         email ,
-         password ,
-         nickname ,
-        }
- 
-        instance.post("/signup",data).then(response=>{
-             console.log(response)
-         }).catch(error=> {
+          email,
+          password,
+          nickname,
+        };
+        
+        return instance
+          .post("/user/signup", data)
+          .then((response) => {
+          console.log(response);
+          alert("가입완료");
+          navigater("/login");
+        })
+          .catch((error) => {
+        console.log(error);
           alert(error);
-         })      
-        }
+        });
+          } else {
+            console.log("다시 확인 해주세요.");
+            return alert("다시 확인해주세요.");
+          }
+        };
 
       const checkEmail = () => {
-        instance.post(`user/${email}`).then(response=>{
-          //email 중복이 없는 경우
+        instance.post(`/user/email/${email}`).then(response=>{
           setEmailCheckError(false);
         }).catch(error=> {
-          //중복이 있는 경우
           setEmailCheckError(true);
           alert(error);
          })      
         }
 
       const checkNickname = () => {
-        instance.post(`/user/${nickname}`).then(response=>{
+        instance.post(`/user/nickname/${nickname}`).then(response=>{
           setNickCheckError(false);
         }).catch(error=> {
           alert(error);
@@ -81,26 +95,26 @@ const RegisterPage = () => {
          })      
         }
 
-      const onSubmitHandler = (event) => {
-        event.preventDefault();
-        if (emailError===false&& confirmPasswordError===false&&passwordError===false&&emailCheckError===false&&nickCheckError===false) 
-          {alert("가입완료")
-          navigater("/login")}
-          else 
-          alert("다시 확인해주세요.")
-      };
+      // const onSubmitHandler = (event) => {
+      //   event.preventDefault();
+      //   if (emailError===false&& confirmPasswordError===false&&passwordError===false&&emailCheckError===false&&nickCheckError===false)
+      //     {alert("가입완료")
+      //     navigater("/login")}
+      //     else 
+      //     alert("다시 확인해주세요.")
+      // };
     
 
     return (
         <SignupDiv>
             <form 
-            onSubmit={onSubmitHandler}
+            // onSubmit={onSubmitHandler}
             style={{display:"flex", flexDirection:"column"}}>
              <h2>Signup</h2>
               <Row>
                <label> 아이디</label>
                <input type="text" value={email} onChange={onEmailHandler} required />
-               <button onClick={checkEmail}>중복체크</button>
+               <button disabled={emailError===true ? true : false} onClick={checkEmail}>중복체크</button>
               </Row>
               <span>{emailError && <div class="invalid-input"> 아이디는 이메일로 입력해주세요. </div>}</span>
               <Row>
@@ -125,7 +139,6 @@ const RegisterPage = () => {
                </Btnset>
             </form>
         </SignupDiv>
-       
     )
 }
 
