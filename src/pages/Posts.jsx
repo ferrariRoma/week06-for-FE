@@ -10,7 +10,6 @@ import {
   StyledInputContent,
   StyledInputTitle,
 } from "../components/styled";
-import axios from "axios";
 import "./post.css";
 import instance from "../axiosConfig";
 
@@ -20,14 +19,17 @@ const Post = () => {
   const content = useRef();
   const [gadaOda, setGadaOda] = useState("");
   const [district, setDistrict] = useState("");
+  const [user, setUser] = useState("");
   let inputRef;
   const [fileImage, setFileImage] = useState({
     image_file: "",
     preview_url: "https://memegenerator.net/img/instances/80735467.jpg",
   });
-  const stortoken = JSON.parse(localStorage.getItem("user"));
-  const [user, setUser] = useState("");
-  setUser(stortoken.nickname);
+  useEffect(()=>{
+    const stortoken = JSON.parse(localStorage.getItem("user"));
+    setUser(stortoken.nickname);
+  },[]);
+
   //파일 저장
   const saveFileImage = (e) => {
     e.preventDefault();
