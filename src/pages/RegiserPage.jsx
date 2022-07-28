@@ -8,8 +8,6 @@ const RegisterPage = () => {
     const [password, setPassword] = React.useState("");
     const [confirmPassword, setConfirmPassword] = React.useState("");
     const [nickname, setNickname] = React.useState("");
-    
-    
     const [emailError, setEmailError] = React.useState(true);
     const [passwordError, setPasswordError] = React.useState(true);
     const [confirmPasswordError, setConfirmPasswordError] = React.useState(true);
@@ -47,35 +45,22 @@ const RegisterPage = () => {
       }  
 
       const registAxios = () => {
-        if (
-          emailError === false &&
-          confirmPasswordError === false &&
-          passwordError === false &&
-          emailCheckError === false &&
-          nickCheckError === false
-        ) {
         const data = {
-          email,
-          password,
-          nickname,
-        };
+        email ,
+        password ,
+        nickname ,
+        }
         
-        return instance
-          .post("/user/signup", data)
-          .then((response) => {
-          console.log(response);
-          alert("가입완료");
-          navigater("/login");
+        return instance.post("/user/signup", data).then((response) => {
+        console.log(response);
+        alert("가입완료");
+        navigater("/login");
         })
-          .catch((error) => {
+        .catch((error) => {
         console.log(error);
-          alert(error);
+        alert(error);
         });
-          } else {
-            console.log("다시 확인 해주세요.");
-            return alert("다시 확인해주세요.");
-          }
-        };
+        }
 
       const checkEmail = () => {
         instance.post(`/user/email/${email}`).then(response=>{
@@ -87,6 +72,7 @@ const RegisterPage = () => {
         }
 
       const checkNickname = () => {
+
         instance.post(`/user/nickname/${nickname}`).then(response=>{
           setNickCheckError(false);
         }).catch(error=> {
@@ -114,9 +100,12 @@ const RegisterPage = () => {
               <Row>
                <label> 아이디</label>
                <input type="text" value={email} onChange={onEmailHandler} required />
+
+
                <button disabled={emailError===true ? true : false} onClick={checkEmail}>중복체크</button>
+
               </Row>
-              <span>{emailError && <div class="invalid-input"> 아이디는 이메일로 입력해주세요. </div>}</span>
+              <span>{emailError && <div className="invalid-input"> 아이디는 이메일로 입력해주세요. </div>}</span>
               <Row>
                <label> 닉네임</label>
                <input type="text" value={nickname}  onChange={onNicNameHandler} required/>
@@ -126,12 +115,12 @@ const RegisterPage = () => {
                <label> 비밀번호</label>
                <input type="password" value={password}  onChange={onPasswordHandler} required/>
               </Row>
-              <span>{passwordError && <div class="invalid-input"> 비밀번호는 문자와 숫자를 포함한 최소 8자리로 입력해주세요.</div>}</span>
+              <span>{passwordError && <div className="invalid-input"> 비밀번호는 문자와 숫자를 포함한 최소 8자리로 입력해주세요.</div>}</span>
               <Row>
                <label> 비밀번호 확인</label>
                 <input type="password" value={confirmPassword} onChange={onConfirmPasswordHandler} required/>
               </Row> 
-              <span>{confirmPasswordError && <div class="invalid-input">비밀번호를 확인해주세요.</div>}</span> 
+              <span>{confirmPasswordError && <div className="invalid-input">비밀번호를 확인해주세요.</div>}</span> 
               <br/>
                <Btnset>
                 <button type="submit" onClick={registAxios}>Join</button>

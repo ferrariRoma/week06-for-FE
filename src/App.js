@@ -16,7 +16,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { clearUser, loginUser } from "./redux/modules/userSlice";
 import EditPost from "./pages/EditPosts";
 import Introduce from "./pages/Introduce";
-import instance from "./axiosConfig";
+
 
 function App() {
   // 페이지네이션 관련 state. 페이지네이션이 이루어지는 Home component에 props로 전달.
@@ -33,23 +33,23 @@ function App() {
     navigater("/");
   };
 
-  useEffect(() => {
-    const stortoken = JSON.parse(localStorage.getItem("user"));
-    if (user_data === false && stortoken !== null) {
-      instance
-        .get("/user/userinfo", {
-          headers: { Authorization: stortoken },
-        })
-        .then((response) => {
-          dispatch(
-            loginUser({
-              email: response.data.email,
-              nickname: response.data.nickname,
-            })
-          );
-        });
-    }
-  });
+  // useEffect(() => {
+  //   const stortoken = JSON.parse(localStorage.getItem("user"));
+  //   if (user_data === false && stortoken !== null) {
+  //     instance
+  //       .get("/user/userinfo", {
+  //         headers: { Authorization: stortoken },
+  //       })
+  //       .then((response) => {
+  //         dispatch(
+  //           loginUser({
+  //             email: response.data.email,
+  //             nickname: response.data.nickname,
+  //           })
+  //         );
+  //       });
+  //   }
+  // });
 
   // 13.209.4.223
   // 오다 주웠다 클릭
@@ -65,11 +65,9 @@ function App() {
     fetchData();
   }, []); */
 
-  useEffect(()=>{
-    onClickOdaBtn();
-  })
-
-
+  // useEffect(()=> {
+  //   onClickOdaBtn();
+  // },[]);
 
   const onClickOdaBtn = async () => {
     setLoading(true);
