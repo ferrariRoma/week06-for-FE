@@ -16,7 +16,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { clearUser, loginUser } from "./redux/modules/userSlice";
 import EditPost from "./pages/EditPosts";
 import Introduce from "./pages/Introduce";
-import instance from "./axiosConfig";
+
 
 function App() {
   // 페이지네이션 관련 state. 페이지네이션이 이루어지는 Home component에 props로 전달.

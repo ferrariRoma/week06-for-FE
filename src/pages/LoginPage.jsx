@@ -18,7 +18,7 @@ const LoginPage = () => {
      email ,
      password ,
     }
-
+ 
   instance.get("/login/true",data).then(response=>{
     sessionStorage.setItem("user", JSON.stringify(response.data.cookie))
     dispatch(loginUser(
@@ -54,6 +54,21 @@ const LoginPage = () => {
   //       alert(error);
   //     });
   // };
+
+    instance.post("/login", data).then((response) => {
+        localStorage.setItem("user", JSON.stringify(response.data));
+        dispatch(
+          loginUser({
+            email: response.data.email,
+            nickname: response.data.nickname,
+          })
+        );
+        navigater("/");
+      })
+      .catch((error) => {
+        alert(error);
+      });
+  };
 
   const onEmailHandler = (event) => {
     setEmail(event.currentTarget.value);
