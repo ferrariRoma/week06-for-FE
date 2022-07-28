@@ -53,6 +53,86 @@ const RegisterPage = () => {
   };
 
   const registAxios = () => {
+    const data = {
+      email,
+      password,
+      nickname,
+    };
+
+    return instance
+      .post("/user/signup", data)
+      .then((response) => {
+        console.log(response);
+        alert("가입완료");
+        navigater("/login");
+      })
+      .catch((error) => {
+        console.log(error);
+        alert(error);
+      });
+  };
+
+  // const registAxios = () => {
+  //   if (
+  //     emailError === false &&
+  //     confirmPasswordError === false &&
+  //     passwordError === false &&
+  //     emailCheckError === false &&
+  //     nickCheckError === false
+  //   ) {
+  //   const data = {
+  //     email,
+  //     password,
+  //     nickname,
+  //   };
+
+  //   return instance
+  //     .post("/user/signup", data)
+  //     .then((response) => {
+  //     console.log(response);
+  //     alert("가입완료");
+  //     navigater("/login");
+  //   })
+  //     .catch((error) => {
+  //   console.log(error);
+  //     alert(error);
+  //   });
+  //     } else {
+  //       console.log("다시 확인 해주세요.");
+  //       return alert("다시 확인해주세요.");
+  //     }
+  //   };
+
+  const checkEmail = () => {
+    instance
+      .post(`/user/email/${email}`)
+      .then((response) => {
+        setEmailCheckError(false);
+        console.log(response);
+      })
+      .catch((error) => {
+        setEmailCheckError(true);
+        alert(error);
+        console.log(error);
+      });
+  };
+
+  const checkNickname = () => {
+    instance
+      .post(`/user/nickname/${nickname}`)
+      .then((response) => {
+        setNickCheckError(false);
+        console.log(response);
+      })
+      .catch((error) => {
+        alert(error);
+        console.log(error);
+        setNickCheckError(true);
+      });
+  };
+
+  const onSubmitHandler = (event) => {
+    event.preventDefault();
     if (
       emailError === false &&
       confirmPasswordError === false &&
@@ -60,75 +140,27 @@ const RegisterPage = () => {
       emailCheckError === false &&
       nickCheckError === false
     ) {
-      const data = {
-        email,
-        password,
-        nickname,
-      };
-
-      return instance
-        .post("/user/signup", data)
-        .then((response) => {
-          console.log(response);
-          alert("가입완료");
-          navigater("/login");
-        })
-        .catch((error) => {
-          console.log(error);
-          alert(error);
-        });
-    } else {
-      console.log("다시 확인 해주세요.");
-      return alert("다시 확인해주세요.");
-    }
+      alert("가입완료");
+      navigater("/login");
+    } else alert("다시 확인해주세요.");
   };
-
-  const checkEmail = () => {
-    instance
-      .post(`user/${email}`)
-      .then((response) => {
-        //email 중복이 없는 경우
-        setEmailCheckError(false);
-      })
-      .catch((error) => {
-        //중복이 있는 경우
-        setEmailCheckError(true);
-        alert(error);
-      });
-  };
-
-  const checkNickname = () => {
-    instance
-      .post(`/user/${nickname}`)
-      .then((response) => {
-        setNickCheckError(false);
-      })
-      .catch((error) => {
-        alert(error);
-        setNickCheckError(true);
-      });
-  };
-
-  // const onSubmitHandler = (event) => {
-  //   event.preventDefault();
-  //   if (emailError===false&& confirmPasswordError===false&&passwordError===false&&emailCheckError===false&&nickCheckError===false)
-  //   {
-  //     alert("가입완료");
-  //     navigater("/login");
-  //   } else alert("다시 확인해주세요.");
-  // };
 
   return (
     <SignupDiv>
       <form
-        // onSubmit={onSubmitHandler}
+        onSubmit={onSubmitHandler}
         style={{ display: "flex", flexDirection: "column" }}
       >
         <h2>Signup</h2>
         <Row>
           <label> 아이디</label>
           <input type="text" value={email} onChange={onEmailHandler} required />
-          <button onClick={checkEmail}>중복체크</button>
+          <button
+            disabled={emailError === true ? true : false}
+            onClick={checkEmail}
+          >
+            중복체크
+          </button>
         </Row>
         <span>
           {emailError && (
