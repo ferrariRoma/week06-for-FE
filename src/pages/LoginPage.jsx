@@ -18,7 +18,7 @@ const LoginPage = () => {
       password,
     };
 
-    instance.post("/login", data).then((response) => {
+    instance.post("/user/login", data).then((response) => {
         localStorage.setItem("user", JSON.stringify(response.data));
         dispatch(
           loginUser({

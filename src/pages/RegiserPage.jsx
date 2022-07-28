@@ -54,7 +54,7 @@ const RegisterPage = () => {
          nickname ,
         }
  
-        instance.post("/signup",data).then(response=>{
+        instance.post("/user/signup",data).then(response=>{
              console.log(response)
          }).catch(error=> {
           alert(error);
@@ -62,7 +62,7 @@ const RegisterPage = () => {
         }
 
       const checkEmail = () => {
-        instance.get(`user/${email}`).then(response=>{
+        instance.post(`/user/email/{email}`).then(response=>{
           //email 중복이 없는 경우
           setEmailCheckError(false);
         }).catch(error=> {
@@ -73,7 +73,7 @@ const RegisterPage = () => {
         }
 
       const checkNickname = () => {
-        instance.get(`/user/${nickname}`).then(response=>{
+        instance.post(`/user/nickname/{nickname}`).then(response=>{
           setNickCheckError(false);
         }).catch(error=> {
           alert(error);
@@ -100,13 +100,13 @@ const RegisterPage = () => {
               <Row>
                <label> 아이디</label>
                <input type="text" value={email} onChange={onEmailHandler} required />
-               <button onClick={checkEmail}>중복체크</button>
+               {/* <button onClick={checkEmail}>중복체크</button> */}
               </Row>
               <span>{emailError && <div class="invalid-input"> 아이디는 이메일로 입력해주세요. </div>}</span>
               <Row>
                <label> 닉네임</label>
                <input type="text" value={nickname}  onChange={onNicNameHandler} required/>
-               <button onClick={checkNickname}>중복체크</button>
+               {/* <button onClick={checkNickname}>중복체크</button> */}
               </Row>
               <Row>
                <label> 비밀번호</label>

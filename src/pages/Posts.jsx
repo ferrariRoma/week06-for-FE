@@ -61,7 +61,7 @@ const Post = () => {
     if (fileImage.image_file) {
       const formData = new FormData();
       formData.append("file", fileImage.image_file);
-      await axios.post(`/api/posts`, formData);
+      await instance.post(`/api/posts`, formData);
       alert("게시글이 작성되었습니다.");
       setFileImage({
         image_file: "",
@@ -84,7 +84,7 @@ const Post = () => {
       gadaoda: gadaOda,
       completed: false,
     };
-    await axios.post(`/api/posts`, contentBox);
+    await instance.post(`/api/posts`, contentBox);
   };
 
   const OPTIONS = [

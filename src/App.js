@@ -65,6 +65,12 @@ function App() {
     };
     fetchData();
   }, []); */
+
+  useEffect(()=> {
+    onClickOdaBtn();
+  },[]);
+
+
   const onClickOdaBtn = async () => {
     setLoading(true);
     try {
