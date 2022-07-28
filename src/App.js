@@ -4,6 +4,7 @@ import { Routes, Route } from "react-router-dom";
 import { StyledHeader } from "./components/styled";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import instance from "./axiosConfig";
 import LoadingSpinner from "./components/Spinner";
 import Home from "./pages/Home";
 import Detail from "./pages/Detail";
@@ -139,6 +140,5 @@ function App() {
     </div>
   );
 }
-
 
 export default App;
