@@ -33,23 +33,23 @@ function App() {
     navigater("/");
   };
 
-  useEffect(() => {
-    const stortoken = JSON.parse(localStorage.getItem("user"));
-    if (user_data === false && stortoken !== null) {
-      instance
-        .get("/user/userinfo", {
-          headers: { Authorization: stortoken },
-        })
-        .then((response) => {
-          dispatch(
-            loginUser({
-              email: response.data.email,
-              nickname: response.data.nickname,
-            })
-          );
-        });
-    }
-  });
+  // useEffect(() => {
+  //   const stortoken = JSON.parse(localStorage.getItem("user"));
+  //   if (user_data === false && stortoken !== null) {
+  //     instance
+  //       .get("/user/userinfo", {
+  //         headers: { Authorization: stortoken },
+  //       })
+  //       .then((response) => {
+  //         dispatch(
+  //           loginUser({
+  //             email: response.data.email,
+  //             nickname: response.data.nickname,
+  //           })
+  //         );
+  //       });
+  //   }
+  // });
 
   // 13.209.4.223
   // 오다 주웠다 클릭
@@ -65,12 +65,9 @@ function App() {
     fetchData();
   }, []); */
 
-  useEffect(()=> {
-    onClickOdaBtn();
-  },[]);
-
-
-
+  // useEffect(()=> {
+  //   onClickOdaBtn();
+  // },[]);
 
   const onClickOdaBtn = async () => {
     setLoading(true);

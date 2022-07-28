@@ -10,7 +10,6 @@ import {
   StyledInputContent,
   StyledInputTitle,
 } from "../components/styled";
-import axios from "axios";
 import "./post.css";
 import instance from "../axiosConfig";
 
@@ -29,7 +28,7 @@ const EditPost = (prop) => {
     preview_url: "https://memegenerator.net/img/instances/80735467.jpg",
   });
   const stortoken = JSON.parse(localStorage.getItem("user"));
-  const [user, setUser] = useState("");
+  const [user, setUser] = useState("hello");
   setUser(stortoken.nickname)
 
   const post = location.state
