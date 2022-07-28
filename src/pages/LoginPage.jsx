@@ -1,5 +1,4 @@
 import React from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { loginUser } from "../redux/modules/userSlice";
 import { useDispatch } from "react-redux";

@@ -27,7 +27,7 @@ const Post = () => {
   });
   useEffect(() => {
     const stortoken = JSON.parse(localStorage.getItem("user"));
-    setUser(stortoken?.nickname);
+    setUser(stortoken.nickname);
   }, []);
 
   //파일 저장
