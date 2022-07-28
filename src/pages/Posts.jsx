@@ -25,8 +25,9 @@ const Post = () => {
     image_file: "",
     preview_url: "https://memegenerator.net/img/instances/80735467.jpg",
   });
+
   useEffect(()=>{
-    const stortoken = JSON.parse(localStorage.getItem("user"));
+    const stortoken = JSON.parse(sessionStorage.getItem("user"));
     setUser(stortoken.nickname);
   },[]);
 
