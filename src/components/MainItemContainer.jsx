@@ -11,7 +11,9 @@ const MainItemContainer = memo(({ post }) => {
   return (
     <>
       <StyledItemContainer onClick={() => onClickPost(post.postId)}>
-        <div>{/* <img src=`${post.imageURL}`></img> */}</div>
+        <div>
+          <img src={post.imageURL} />
+        </div>
         <div>{post.title}</div>
       </StyledItemContainer>
     </>

@@ -19,18 +19,17 @@ const Post = () => {
   const content = useRef();
   const [gadaOda, setGadaOda] = useState("");
   const [district, setDistrict] = useState("");
-  // const [user, setUser] = useState("");
+  const [user, setUser] = useState("");
   let inputRef;
   const [fileImage, setFileImage] = useState({
     image_file: "",
     preview_url: "https://memegenerator.net/img/instances/80735467.jpg",
   });
 
-  useEffect(()=>{
+  useEffect(() => {
     const stortoken = JSON.parse(sessionStorage.getItem("user"));
     setUser(stortoken.nickname);
-  },[]);
-
+  }, []);
 
   //파일 저장
   const saveFileImage = (e) => {
@@ -89,7 +88,7 @@ const Post = () => {
       completed: false,
     };
     await instance.post(`/api/posts`, contentBox);
-    navigate("/")
+    navigate("/");
   };
 
   // const sendContentToServer = async () => {

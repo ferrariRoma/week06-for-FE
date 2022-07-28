@@ -11,51 +11,26 @@ const LoginPage = () => {
   const navigater = useNavigate();
   const dispatch = useDispatch();
 
-
-
   const loginAxios = () => {
     const data = {
-     email ,
-     password ,
-    }
- 
-  instance.get("/login/true",data).then(response=>{
-    sessionStorage.setItem("user", JSON.stringify(response.data.cookie))
-    dispatch(loginUser(
-     {
-      mail: response.data.cookie.email,
-      nickname: response.data.cookie.nickname,
-   }
-  ))
-  navigater("/");
- })  
-}
+      email,
+      password,
+    };
 
-  
-  // const loginAxios = async() => {
-  //   const data = {
-  //     email,
-  //     password,
-  //   };
+    instance.get("/login/true", data).then((response) => {
+      sessionStorage.setItem("user", JSON.stringify(response.data.cookie));
+      dispatch(
+        loginUser({
+          mail: response.data.cookie.email,
+          nickname: response.data.cookie.nickname,
+        })
+      );
+      navigater("/");
+    });
 
-  //  await instance.post("/user/login", data).then((response) => {
-  //       console.log(response.data)
-  //       console.log(response.headers)
-  //       localStorage.setItem("token", JSON.stringify(response.headers.token));
-  //       dispatch(
-  //         loginUser({
-  //           email: response.data.email,
-  //           nickname: response.data.nickname,
-  //         })
-  //       );
-  //       navigater("/");
-  //     })
-  //     .catch((error) => {
-  //       alert(error);
-  //     });
-  // };
-
-    instance.post("/login", data).then((response) => {
+    instance
+      .post("/login", data)
+      .then((response) => {
         localStorage.setItem("user", JSON.stringify(response.data));
         dispatch(
           loginUser({

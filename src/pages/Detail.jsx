@@ -6,7 +6,6 @@ import {
 } from "../components/styled";
 import { useLocation, useNavigate } from "react-router-dom";
 import Comment from "../components/Comment";
-import axios from "axios";
 import { useSelector } from "react-redux";
 import "./post.css";
 import instance from "../axiosConfig";
@@ -23,7 +22,7 @@ const Detail = () => {
   useEffect(() => {
     const requestData = async () => {
       try {
-        const response = await instance.get(`/api/posts/${contentData.postId}`);
+        const response = await instance.get(`/api/${contentData.id}`);
         return setCommentsInfo(response.data);
       } catch (err) {
         console.log(err);
@@ -38,7 +37,7 @@ const Detail = () => {
     const stortoken = JSON.parse(localStorage.getItem("user"));
     if (stortoken !== null) {
       try {
-        await instance.delete(`/api/posts/${contentData.postId}`);
+        await instance.delete(`/api/${contentData.id}`);
         return navigate("/");
       } catch (err) {
         console.log(err);
@@ -67,12 +66,9 @@ const Detail = () => {
 
       // DB에 수정 정보 전달
       try {
-        return await instance.put(
-          `/api/posts/${contentData.postId}/completed`,
-          {
-            completed: requestValue,
-          }
-        );
+        return await instance.put(`/api/${contentData.id}/`, {
+          completed: requestValue,
+        });
       } catch (err) {
         return console.log(err);
       }
@@ -94,10 +90,10 @@ const Detail = () => {
     }
     const comment = { comment: textareaRef.current.value.trim() };
     try {
-      await instance.post(`/api/posts/${contentData.postId}/comments`, comment);
+      await instance.post(`/api/${contentData.id}`, comment);
       // 등록 후 백엔드에서 최신 데이터 받아오기
       const requestUpdateComment = async () => {
-        const response = await instance.get(`/api/posts/${contentData.postId}`);
+        const response = await instance.get(`/api/${contentData.id}`);
         return setCommentsInfo(response.data);
       };
       return requestUpdateComment();
@@ -145,7 +141,7 @@ const Detail = () => {
                   <button
                     className="btn complete__btn__custom"
                     onClick={() =>
-                      navigate(`/posts/${contentData.postId}/edit`, {
+                      navigate(`/posts/${contentData.id}/edit`, {
                         state: commentsInfo,
                       })
                     }

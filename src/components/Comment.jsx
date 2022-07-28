@@ -1,12 +1,11 @@
-import React, { useRef, useState } from "react";
+import React, { memo, useRef, useState } from "react";
 import { CommentBox, StyledPostCommentBox } from "./styled";
 import { useSelector } from "react-redux";
-import axios from "axios";
 import "../pages/post.css";
 import { useNavigate } from "react-router-dom";
 import instance from "../axiosConfig";
 
-const Comment = ({ info, setCommentsInfo }) => {
+const Comment = memo(({ info, setCommentsInfo }) => {
   const { commentId } = info;
   const [editState, setEditState] = useState(false);
   const textareaRef = useRef(info.comment);
@@ -31,7 +30,7 @@ const Comment = ({ info, setCommentsInfo }) => {
       return navigate("/login");
     }
     try {
-      await instance.delete(`/api/comments/${commentId}`);
+      await instance.delete(`/api/${commentId}`);
       return setCommentsInfo((prev) => {
         const deleteTargetId = commentId;
         const prevData = {
@@ -61,7 +60,7 @@ const Comment = ({ info, setCommentsInfo }) => {
       const modifiedComment = {
         comment: textareaRef.current.value,
       };
-      await instance.put(`/api/comments/${commentId}`, modifiedComment);
+      await instance.put(`/api/${commentId}`, modifiedComment);
       setEditState(false);
       return setCommentsInfo((prev) => {
         const editTargetId = commentId;
@@ -96,7 +95,7 @@ const Comment = ({ info, setCommentsInfo }) => {
             <div className="contentDetail__timeStamp">{info.createdAt}</div>
           </div>
           {/* 테스트 용 */}
-          {/* {editState ? null : (
+          {editState ? null : (
             <>
               <div className="contentDetail__editBtn">
                 <button
@@ -113,9 +112,9 @@ const Comment = ({ info, setCommentsInfo }) => {
                 </button>
               </div>
             </>
-          )} */}
+          )}
 
-          {checked__comment === info.nickname ? (
+          {/* {checked__comment === info.nickname ? (
             editState ? null : (
               <>
                 <div className="contentDetail__editBtn">
@@ -134,7 +133,7 @@ const Comment = ({ info, setCommentsInfo }) => {
                 </div>
               </>
             )
-          ) : null}
+          ) : null} */}
         </div>
         {editState ? (
           <>
@@ -165,6 +164,6 @@ const Comment = ({ info, setCommentsInfo }) => {
       </CommentBox>
     </>
   );
-};
+});
 
 export default Comment;
