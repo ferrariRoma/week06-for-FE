@@ -4,7 +4,6 @@ import { Routes, Route } from "react-router-dom";
 import { StyledHeader } from "./components/styled";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import axios from "axios";
 import LoadingSpinner from "./components/Spinner";
 import Home from "./pages/Home";
 import Detail from "./pages/Detail";
@@ -17,7 +16,6 @@ import { clearUser, loginUser } from "./redux/modules/userSlice";
 import EditPost from "./pages/EditPosts";
 import Introduce from "./pages/Introduce";
 import instance from "./axiosConfig";
-
 
 function App() {
   // 페이지네이션 관련 state. 페이지네이션이 이루어지는 Home component에 props로 전달.
@@ -65,6 +63,13 @@ function App() {
     };
     fetchData();
   }, []); */
+
+  useEffect(()=>{
+    onClickOdaBtn();
+  })
+
+
+
   const onClickOdaBtn = async () => {
     setLoading(true);
     try {
